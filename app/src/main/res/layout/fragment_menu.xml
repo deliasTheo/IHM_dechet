@@ -15,11 +15,12 @@
 
         />
     <ImageView
+        android:id="@+id/chartIcon"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_weight="1"
         android:background="@color/extraLightGreen"
-        android:src="@drawable/logo_map"
+        android:src="@drawable/chart_icon"
         android:padding="12dp"
         />
 

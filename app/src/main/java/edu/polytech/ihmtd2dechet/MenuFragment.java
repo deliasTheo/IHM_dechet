@@ -20,6 +20,12 @@ public class MenuFragment extends Fragment {
             Intent intent = new Intent(getContext(), MapActivity.class);
             startActivity(intent);
         });
+
+        ImageView logoChart = rootView.findViewById(R.id.chartIcon);
+        logoChart.setOnClickListener(click -> {
+            Intent intent = new Intent(getContext(), StatisticActivity.class);
+            startActivity(intent);
+        });
         return rootView;
     }
 }
