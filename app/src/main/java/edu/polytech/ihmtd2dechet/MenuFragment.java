@@ -14,9 +14,10 @@ import android.widget.ImageView;
 public class MenuFragment extends Fragment {
     public MenuFragment() { }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
-        //do something
+
         ImageView logoMap = rootView.findViewById(R.id.mapPin);
         logoMap.setOnClickListener(click -> {
             Intent intent = new Intent(getContext(), MapActivity.class);
@@ -24,6 +25,29 @@ public class MenuFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+        ImageView logoChart = rootView.findViewById(R.id.chartIcon);
+        logoChart.setOnClickListener(click -> {
+            Intent intent = new Intent(getContext(), StatisticActivity.class);
+            startActivity(intent);
+        });
+
+
+        ImageView logoGuide = rootView.findViewById(R.id.guideIcon);
+        logoGuide.setOnClickListener(view -> navigateToActivity(GuideActivity.class));
+
+        ImageView logoEvents = rootView.findViewById(R.id.EventsIcon);
+        logoEvents.setOnClickListener(click -> {
+            Intent intent = new Intent(getContext(), EventsActivity.class);
+            startActivity(intent);
+        });
+
         return rootView;
+    }
+
+    private void navigateToActivity(Class<?> activityClass) {
+        Intent intent = new Intent(getContext(), activityClass);
+        startActivity(intent);
     }
 }
