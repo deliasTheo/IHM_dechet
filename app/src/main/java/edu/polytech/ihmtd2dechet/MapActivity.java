@@ -14,12 +14,12 @@ public class MapActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Fragment fragmentMenu= new MenuFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
+        Fragment fragmentMenu = new MenuFragment();
         transaction.replace(R.id.fragment_menu, fragmentMenu);
-        transaction.commit();
 
+        transaction.commit();
 
         setContentView(R.layout.activity_map);
     }

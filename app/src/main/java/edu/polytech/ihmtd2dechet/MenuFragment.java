@@ -16,11 +16,13 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
 
+
         ImageView logoMap = rootView.findViewById(R.id.mapPin);
         logoMap.setOnClickListener(view -> navigateToActivity(MapActivity.class));
 
         ImageView logoGuide = rootView.findViewById(R.id.guideIcon);
         logoGuide.setOnClickListener(view -> navigateToActivity(GuideActivity.class));
+
 
 
         return rootView;
