@@ -5,10 +5,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="coucou"/>
+    <!-- Map Icon -->
+    <ImageView
+        android:id="@+id/mapPin"
+        android:layout_width="38dp"
+        android:layout_height="261dp"
+        android:src="@drawable/map" />
 
+    <!-- Guide Icon -->
+    <ImageView
+        android:id="@+id/guideIcon"
+        android:layout_width="38dp"
+        android:layout_height="261dp"
+        android:layout_marginStart="16dp"
+
+        android:src="@drawable/info" /> <!-- Add margin between icons if needed -->
 
 </LinearLayout>
