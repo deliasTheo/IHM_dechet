@@ -20,7 +20,6 @@ public class MapActivity extends AppCompatActivity  {
         transaction.replace(R.id.fragment_menu, fragmentMenu);
         transaction.commit();
 
-
         setContentView(R.layout.activity_map);
     }
 
