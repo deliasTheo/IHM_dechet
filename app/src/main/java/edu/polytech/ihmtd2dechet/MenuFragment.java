@@ -10,7 +10,7 @@ import android.app.Fragment;
 import android.widget.ImageView;
 
 public class MenuFragment extends Fragment {
-    public MenuFragment() { } //constructeur (même vide)
+    public MenuFragment() { }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class MenuFragment extends Fragment {
 
         ImageView logoGuide = rootView.findViewById(R.id.guideIcon);
         logoGuide.setOnClickListener(view -> navigateToActivity(GuideActivity.class));
+
 
         return rootView;
     }

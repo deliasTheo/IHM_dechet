@@ -22,5 +22,4 @@ public class GuideActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_guide);
 
 
-
 }}
