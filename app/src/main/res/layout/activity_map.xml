@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:background="@color/green"
 
+
     tools:context=".MapActivity">
+
 
 
     <fragment
@@ -32,6 +34,7 @@
         />
 
 
+
     <FrameLayout android:id="@+id/fragment_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,6 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
 
         />
+
 
 
 

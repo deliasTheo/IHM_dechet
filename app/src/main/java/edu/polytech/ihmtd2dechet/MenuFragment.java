@@ -17,6 +17,7 @@ public class MenuFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
 
 
+
         ImageView logoMap = rootView.findViewById(R.id.mapPin);
         logoMap.setOnClickListener(view -> navigateToActivity(MapActivity.class));
 
