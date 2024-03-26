@@ -12,14 +12,25 @@ import android.widget.ImageView;
 public class MenuFragment extends Fragment {
     public MenuFragment() { }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
-        //do something
+
+
+
         ImageView logoMap = rootView.findViewById(R.id.mapPin);
-        logoMap.setOnClickListener(click -> {
-            Intent intent = new Intent(getContext(), MapActivity.class);
-            startActivity(intent);
-        });
+        logoMap.setOnClickListener(view -> navigateToActivity(MapActivity.class));
+
+        ImageView logoGuide = rootView.findViewById(R.id.guideIcon);
+        logoGuide.setOnClickListener(view -> navigateToActivity(GuideActivity.class));
+
+
+
         return rootView;
+    }
+
+    private void navigateToActivity(Class<?> activityClass) {
+        Intent intent = new Intent(getContext(), activityClass);
+        startActivity(intent);
     }
 }

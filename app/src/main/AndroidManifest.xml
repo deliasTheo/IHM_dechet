@@ -22,9 +22,18 @@
             </intent-filter>
         </activity>
         <activity
+
+
+            android:name=".GuideActivity"
+            android:exported="true"/>
+
+
+        <activity
             android:name=".ListActivity"
             android:exported="true"
         />
+
+
     </application>
 
 </manifest>
