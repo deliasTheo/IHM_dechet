@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
 
     <ImageView
         android:id="@+id/mapPin"
         android:layout_width="38dp"
         android:layout_height="261dp"
-        android:src="@drawable/map" />
+        android:src="@drawable/map"
+        android:layout_alignParentBottom="true" />
+
 
     <ImageView
         android:id="@+id/guideIcon"
         android:layout_width="38dp"
         android:layout_height="261dp"
         android:layout_marginStart="16dp"
-        android:src="@drawable/info" />
+        android:src="@drawable/info"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@id/mapPin" />
 
-</LinearLayout>
+</RelativeLayout>
+
