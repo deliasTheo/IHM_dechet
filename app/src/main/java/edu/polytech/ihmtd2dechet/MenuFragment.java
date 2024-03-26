@@ -22,16 +22,22 @@ public class MenuFragment extends Fragment {
             startActivity(intent);
         });
 
+
         ImageView logoChart = rootView.findViewById(R.id.chartIcon);
         logoChart.setOnClickListener(click -> {
             Intent intent = new Intent(getContext(), StatisticActivity.class);
             startActivity(intent);
         });
 
-        logoMap.setOnClickListener(view -> navigateToActivity(MapActivity.class));
 
         ImageView logoGuide = rootView.findViewById(R.id.guideIcon);
         logoGuide.setOnClickListener(view -> navigateToActivity(GuideActivity.class));
+
+        ImageView logoEvents = rootView.findViewById(R.id.EventsIcon);
+        logoEvents.setOnClickListener(click -> {
+            Intent intent = new Intent(getContext(), EventsActivity.class);
+            startActivity(intent);
+        });
 
         return rootView;
     }

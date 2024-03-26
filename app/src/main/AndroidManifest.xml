@@ -32,6 +32,10 @@
         <activity
             android:name=".GuideActivity"
             android:exported="true"/>
+        <activity
+            android:name=".EventsActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
