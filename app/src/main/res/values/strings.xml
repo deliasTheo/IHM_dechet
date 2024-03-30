@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">IHM TD2-Déchet</string>
     <string name="guide">Guide</string>
+    <string name="d_cheterie_ad_quate">Décheterie adéquate :</string>
 </resources>
