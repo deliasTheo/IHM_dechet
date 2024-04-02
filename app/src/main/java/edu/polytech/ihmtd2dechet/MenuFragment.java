@@ -17,27 +17,18 @@ public class MenuFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
 
         ImageView logoMap = rootView.findViewById(R.id.mapPin);
-        logoMap.setOnClickListener(click -> {
-            Intent intent = new Intent(getContext(), MapActivity.class);
-            startActivity(intent);
-        });
+        logoMap.setOnClickListener(view -> navigateToActivity(MapActivity.class));
 
 
         ImageView logoChart = rootView.findViewById(R.id.chartIcon);
-        logoChart.setOnClickListener(click -> {
-            Intent intent = new Intent(getContext(), StatisticActivity.class);
-            startActivity(intent);
-        });
+        logoChart.setOnClickListener(view -> navigateToActivity(StatisticActivity.class));
 
 
         ImageView logoGuide = rootView.findViewById(R.id.guideIcon);
         logoGuide.setOnClickListener(view -> navigateToActivity(GuideActivity.class));
 
         ImageView logoEvents = rootView.findViewById(R.id.EventsIcon);
-        logoEvents.setOnClickListener(click -> {
-            Intent intent = new Intent(getContext(), EventsActivity.class);
-            startActivity(intent);
-        });
+        logoEvents.setOnClickListener(view -> navigateToActivity(EventsActivity.class));
 
         return rootView;
     }
