@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">IHM TD2-Déchet</string>
     <string name="guide">Guide</string>
+    <string name="filtrer">Filtrer</string>
+    <string-array name="spinnerFilter">
+        <item>Déchet encombrant</item>
+        <item>Déchet non-encombrant</item>
+        <item>Déchet toxique</item>
+        <item>Poubelle</item>
+    </string-array>
 </resources>

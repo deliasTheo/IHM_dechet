@@ -13,8 +13,6 @@
         android:src="@drawable/logo_events"
         android:padding="13dp"
         />
-
-
     <ImageView
         android:id="@+id/chartIcon"
         android:layout_width="wrap_content"
@@ -24,7 +22,6 @@
         android:src="@drawable/logo_chart"
         android:padding="12dp"
     />
-
     <ImageView
         android:id="@+id/mapPin"
         android:background="@color/extraLightGreen"
@@ -35,9 +32,6 @@
         android:padding="12dp"
         android:src="@drawable/logo_map"
     />
-
-
-
     <ImageView
         android:id="@+id/guideIcon"
         android:layout_width="wrap_content"
@@ -47,11 +41,5 @@
         android:background="@color/extraLightGreen"
         android:src="@drawable/logo_info"
         />
-
-
-
-
-
-
 </LinearLayout>
 
