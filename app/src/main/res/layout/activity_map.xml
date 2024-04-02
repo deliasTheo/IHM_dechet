@@ -8,7 +8,14 @@
     tools:context=".MapActivity">
 
 
-
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/fragment_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
     <fragment
         android:id = "@+id/fragment_switch"
         android:name = "edu.polytech.ihmtd2dechet.SwitchFragment"
@@ -18,18 +25,7 @@
         app:layout_constraintTop_toTopOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
-    />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Filter"
-        app:layout_constraintTop_toTopOf="@id/fragment_switch"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/fragment_switch"
         />
-
-
 
     <Button
         android:layout_width="wrap_content"
@@ -39,18 +35,25 @@
         app:layout_constraintStart_toEndOf="@id/fragment_switch"
         app:layout_constraintEnd_toEndOf="parent"
         />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/map_img"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtrer"
+        app:layout_constraintTop_toTopOf="@id/fragment_switch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragment_menu"
+        app:layout_constraintEnd_toStartOf="@id/fragment_switch"
         />
-
-
+    <!-- <Spinner
+        android:id="@+id/filter_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinnerFilter"
+        android:prompt="@string/filtrer"
+        android:spinnerMode="dialog"
+        app:layout_constraintTop_toTopOf="@id/fragment_switch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fragment_switch"
+        /> -->
     <FrameLayout android:id="@+id/fragment_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,15 +62,6 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
-    <org.osmdroid.views.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
 
 
 

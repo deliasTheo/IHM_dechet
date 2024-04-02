@@ -9,6 +9,8 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -27,17 +29,30 @@ public class MapActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Configuration.getInstance().load(getApplicationContext(),
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
 
+        // Fragment dynamique menu
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
         Fragment fragmentMenu = new MenuFragment();
         transaction.replace(R.id.fragment_menu, fragmentMenu);
         transaction.commit();
 
         setContentView(R.layout.activity_map);
 
+        // Open Street Map
+        includeMap();
+    }
+    @Override
+    public void onPause(){
+        super.onPause();
+        map.onPause();
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        map.onResume();
+    }
+    private void includeMap() {
+        Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
         map = findViewById(R.id.mapView);
         map.setTileSource(TileSourceFactory.MAPNIK);    // render
         map.setBuiltInZoomControls(true);               // roomable
@@ -47,10 +62,8 @@ public class MapActivity extends AppCompatActivity  {
         mapController.setCenter(startPoint);
 
         ArrayList<OverlayItem> items= new ArrayList<>();
-        OverlayItem home = new OverlayItem("Theo's office", "my office", new GeoPoint(43.65020, 7.00517));
-        Drawable m = home.getMarker(0);
-        items.add(home);
-        items.add(new OverlayItem("Resto", "chez babar", new GeoPoint(43.64950, 7.00517)));
+        items.add(new OverlayItem("Signalement 1", "", new GeoPoint(43.65020, 7.00517)));
+        items.add(new OverlayItem("Signalement 2", "", new GeoPoint(43.64950, 7.00517)));
 
         ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getApplicationContext(),
                 items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
@@ -69,16 +82,5 @@ public class MapActivity extends AppCompatActivity  {
         map.getOverlays().add(mOverlay);
     }
 
-    @Override
-    public void onPause(){
-        super.onPause();
-        map.onPause();
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        map.onResume();
-    }
 
 }
