@@ -54,23 +54,36 @@ public class GuideActivity extends AppCompatActivity {
                             textView2.setText(decheterie);
                         }
                         if(selectedItem.equals("Non Encombrant")) {
-                            String infoGen = "Un dechat non encombrant est un dechet que vous estimez pouvoir" +
-                                    " gerer sans aide externe , attention à bien faire attention" +
-                                    " au cas ou le dechet soit toxic" +
-                                    "en cas de doute veuillez consulter la page des dechet toxic" +
-                                    " pour plus d'information" +
-                                    "N'oubliez pas de prendre en photo votre travail , cela fait" +
-                                    "plaisir à la communauté et à la mairie" ;
-                            Toast.makeText(GuideActivity.this, "Vous avez sélectionné " + selectedItem, Toast.LENGTH_SHORT).show();
-                            textView.setText(infoGen);
-                        }
-                        if(selectedItem.equals("Déchet toxique")) {
-                            String infoGen = "Veuillez à être très attentif avec ce type de déchets\n " +
-                                    ", ne prenez action en aucun cas\n " +
-                                    "informez les services adéquats\n" ;
+                            String infoGen = "Ce sont des déchets qui peuvent être jetés avec les ordures ménagères" +
+                                    " régulières. Ce sont généralement des déchets de taille et de poids normaux," +
+                                    " tels que les emballages en carton, les plastiques, le verre, etc." ;
+                            String decheterie =
+                                    "1. Poubelle grise ou bac gris : pour les déchets non recyclables ou non compostables.\n" +
+                                            "2. Poubelle jaune ou bac jaune : pour les emballages recyclables tels que le plastique, le métal et le carton.\n" +
+                                            "3. Poubelle verte ou bac vert : pour les déchets organiques compostables comme les restes de fruits et légumes.\n" +
+                                            "4. Poubelle bleue ou bac bleu : pour les papiers et cartons à recycler.\n" +
+                                            "5. Poubelle marron ou bac marron : pour les déchets végétaux destinés au compostage.\n" ;
 
                             Toast.makeText(GuideActivity.this, "Vous avez sélectionné " + selectedItem, Toast.LENGTH_SHORT).show();
                             textView.setText(infoGen);
+                            textView2.setText(decheterie);
+                        }
+                        if(selectedItem.equals("Déchet toxique")) {
+                            String infoGen = "Ce sont des déchets qui contiennent des substances nocives pour" +
+                                    " l'environnement ou la santé humaine. Cela inclut les piles, les produits" +
+                                    " chimiques ménagers, les peintures, les solvants, etc. Ils doivent être " +
+                                    "éliminés de manière spécifique pour éviter toute contamination. ";
+
+                            String decheterie = "Nous vous déconseillons de prendre action tous seuls , si vous estimez que le déchet est dangereux " +
+                                    "veuillez informer les services adéquats.\n" +
+                                    "Signalez le sur l'application\n" +
+                                    "Voici quelques numéros à contacter :\n" +
+                                    "Service de nettoyage : 06583840284";
+
+                            Toast.makeText(GuideActivity.this, "Vous avez sélectionné " + selectedItem, Toast.LENGTH_SHORT).show();
+                            textView.setText(infoGen);
+                            textView2.setText(decheterie);
+
                         }
 
                     }
