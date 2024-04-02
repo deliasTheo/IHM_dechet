@@ -1,7 +1,9 @@
 package edu.polytech.ihmtd2dechet;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +19,8 @@ public class MenuFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
 
         ImageView logoMap = rootView.findViewById(R.id.mapPin);
-        logoMap.setOnClickListener(view -> navigateToActivity(MapActivity.class));
 
+        logoMap.setOnClickListener(view -> navigateToActivity(MapActivity.class));
 
         ImageView logoChart = rootView.findViewById(R.id.chartIcon);
         logoChart.setOnClickListener(view -> navigateToActivity(StatisticActivity.class));

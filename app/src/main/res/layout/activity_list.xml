@@ -19,6 +19,24 @@
         app:layout_constraintEnd_toEndOf = "parent"
     />
 
+    <Button
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:text = "Reset"
+        app:layout_constraintTop_toTopOf = "@id/fragment_switch"
+        app:layout_constraintStart_toEndOf = "@id/fragment_switch"
+        app:layout_constraintEnd_toEndOf = "parent"
+    />
+
+    <Button
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:text = "Filtrer"
+        app:layout_constraintTop_toTopOf = "@id/fragment_switch"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintEnd_toStartOf = "@id/fragment_switch"
+    />
+
     <ListView
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
@@ -37,6 +55,16 @@
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintBottom_toTopOf = "@id/fragment_menu"
+    />
+
+    <fragment
+        android:id = "@+id/fragment_report"
+        android:name = "edu.polytech.ihmtd2dechet.ReportFragment"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        app:layout_constraintBottom_toTopOf = "@id/fragment_menu"
+        app:layout_constraintEnd_toEndOf = "parent"
+        android:layout_marginBottom = "5dp"
     />
 
     <FrameLayout android:id = "@+id/fragment_menu"

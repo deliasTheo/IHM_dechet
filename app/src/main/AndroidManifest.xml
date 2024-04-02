@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name = "android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature android:name="android.hardware.location" android:required="true"/>
 
     <application
         android:name = ".NotificationApplication"
@@ -26,17 +32,18 @@
         </activity>
         <activity
             android:name=".StatisticActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".ListActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".GuideActivity"
             android:exported="true"/>
         <activity
             android:name=".EventsActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ReportingActivity"
             android:exported="true"/>
 
     </application>
