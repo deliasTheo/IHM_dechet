@@ -19,7 +19,7 @@
         android:layout_height="60dp"
         android:layout_weight="1"
         android:background="@color/extraLightGreen"
-        android:src="@drawable/chart_icon"
+        android:src="@drawable/logo_chart"
         android:padding="12dp"
     />
     <ImageView
@@ -39,7 +39,7 @@
         android:layout_weight="1"
         android:padding="12dp"
         android:background="@color/extraLightGreen"
-        android:src="@drawable/info"
+        android:src="@drawable/logo_info"
         />
 </LinearLayout>
 

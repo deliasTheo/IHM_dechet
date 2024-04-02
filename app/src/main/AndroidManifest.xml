@@ -30,17 +30,18 @@
         </activity>
         <activity
             android:name=".StatisticActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".ListActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".GuideActivity"
             android:exported="true"/>
         <activity
             android:name=".EventsActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ReportingActivity"
             android:exported="true"/>
 
     </application>
