@@ -31,10 +31,10 @@ public class ListActivity extends AppCompatActivity {
 
         transaction.commit();
 
-        findViewById( R.id.notification ).setOnClickListener( click -> {
+        findViewById( R.id.notification ).setOnClickListener(click -> {
             String title = "Titre de la notification";
             String message = "Message de la notification";
-            sendNotificationOnChannel( title, message, REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT );
+            sendNotificationOnChannel(title, message, REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT);
         });
     }
 
@@ -46,6 +46,7 @@ public class ListActivity extends AppCompatActivity {
                 .setContentText("id=" + (++notificationId) + " - " + content)
                 .setPriority(priority);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.POST_NOTIFICATIONS}, 0);
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding

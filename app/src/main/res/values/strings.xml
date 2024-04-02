@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">IHM TD2-Déchet</string>
     <string name="guide">Guide</string>
+    <string-array name= "data">
+        <item>premier élément</item>
+        <item>deuxième élément</item>
+        <item>dernier élément</item>
+    </string-array>
 </resources>
