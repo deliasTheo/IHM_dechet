@@ -24,12 +24,6 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-        Fragment fragmentMenu = new MenuFragment();
-        transaction.replace(R.id.fragment_menu, fragmentMenu);
-
-        transaction.commit();
 
         findViewById( R.id.notification ).setOnClickListener(click -> {
             String title = "Titre de la notification";

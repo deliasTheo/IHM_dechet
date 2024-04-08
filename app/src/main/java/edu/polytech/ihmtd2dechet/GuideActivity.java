@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,10 +19,6 @@ public class GuideActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Fragment fragmentMenu = new MenuFragment();
-        transaction.replace(R.id.fragment_menu, fragmentMenu);
-        transaction.commit();
         setContentView(R.layout.activity_guide);
         Button selectButton = findViewById(R.id.select_button);
         Button mapButton = findViewById(R.id.map_button);
