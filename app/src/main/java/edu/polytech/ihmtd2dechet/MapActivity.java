@@ -32,6 +32,7 @@ public class MapActivity extends AppCompatActivity  {
 
 
 
+
         setContentView(R.layout.activity_map);
 
         // Open Street Map
@@ -41,12 +42,14 @@ public class MapActivity extends AppCompatActivity  {
     public void onPause(){
         super.onPause();
         map.onPause();
+
     }
     @Override
     public void onResume(){
         super.onResume();
         map.onResume();
     }
+
     private void includeMap() {
         Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
         map = findViewById(R.id.mapView);

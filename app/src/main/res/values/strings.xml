@@ -1,21 +1,17 @@
 <resources>
     <string name="app_name">IHM TD2-Déchet</string>
     <string name="guide">Guide</string>
-<<<<<<< HEAD
+
 
     <string name="d_cheterie_ad_quate">Décheterie adéquate :</string>
 
-=======
->>>>>>> 0b4d838d0f55aa8d36abb10d49fb29c318011452
+
     <string-array name= "data">
         <item>premier élément</item>
         <item>deuxième élément</item>
         <item>dernier élément</item>
     </string-array>
-<<<<<<< HEAD
 
-=======
->>>>>>> 0b4d838d0f55aa8d36abb10d49fb29c318011452
     <string name="filtrer">Filtrer</string>
     <string-array name="spinnerFilter">
         <item>Déchet encombrant</item>
@@ -23,8 +19,5 @@
         <item>Déchet toxique</item>
         <item>Poubelle</item>
     </string-array>
-<<<<<<< HEAD
 
-=======
->>>>>>> 0b4d838d0f55aa8d36abb10d49fb29c318011452
 </resources>
