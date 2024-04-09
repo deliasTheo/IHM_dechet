@@ -1,9 +1,16 @@
 package edu.polytech.ihmtd2dechet;
 
+import android.app.Activity;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import java.util.Objects;
 
@@ -11,6 +18,11 @@ public class NotificationApplication extends Application {
 
     public static final String REPORTING_CHANNEL = "reporting channel";
     public static final String EVENT_CHANNEL = "event channel";
+
+    public static final int NOTIFICATION_REQUEST_CODE = 0;
+
+
+    private static int notificationId = 0;
 
 
     @Override
@@ -32,6 +44,20 @@ public class NotificationApplication extends Application {
             reportingChannel.setDescription("This channel is used to send notification about new toxic waste reports");
             Objects.requireNonNull(manager).createNotificationChannel(reportingChannel);
         }
+    }
+
+
+    public static void sendNotificationOnChannel(Context context, Activity activity, String title, String content, String channelId, int priority) {
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(context, channelId)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setPriority(priority);
+        if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[] {android.Manifest.permission.POST_NOTIFICATIONS}, NOTIFICATION_REQUEST_CODE);
+            return;
+        }
+        NotificationManagerCompat.from(context).notify(notificationId++, notification.build());
     }
 
 }
