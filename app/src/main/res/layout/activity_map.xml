@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MapActivity">
+
     <org.osmdroid.views.MapView
         android:id="@+id/mapView"
         android:layout_width="wrap_content"
@@ -14,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
+
     <fragment
         android:id = "@+id/fragment_switch"
         android:name = "edu.polytech.ihmtd2dechet.SwitchFragment"
