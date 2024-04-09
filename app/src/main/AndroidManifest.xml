@@ -26,6 +26,9 @@
         android:theme="@style/Theme.IHMTD2Déchet"
         tools:targetApi="31">
         <activity
+            android:name=".OneEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".MapActivity"
             android:exported="true">
             <intent-filter>
@@ -36,19 +39,33 @@
         </activity>
         <activity
             android:name=".StatisticActivity"
+
+            android:exported="true"></activity>
+        <activity
+            android:name=".ListActivity"
+            android:exported="true"></activity>
+
             android:exported="true"/>
         <activity
             android:name=".ListActivity"
             android:exported="true"/>
+
         <activity
             android:name=".GuideActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".EventsActivity"
+
+            android:exported="true" />
+        <activity
+            android:name=".CreateEventActivity"
+            android:exported="true" />
+
             android:exported="true"/>
         <activity
             android:name=".ReportingActivity"
             android:exported="true"/>
+
 
     </application>
 

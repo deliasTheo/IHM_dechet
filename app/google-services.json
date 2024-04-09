@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "48203450627",
+    "firebase_url": "https://ihm-dechet-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ihm-dechet",
+    "storage_bucket": "ihm-dechet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48203450627:android:87d7d66347c1bd42620136",
+        "android_client_info": {
+          "package_name": "edu.polytech.ihmtd2dechet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfrRUqOT_vEGTXwQUfjy0Q5JiYa6kkU-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
