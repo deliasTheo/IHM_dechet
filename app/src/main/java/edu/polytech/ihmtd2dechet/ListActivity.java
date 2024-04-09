@@ -33,6 +33,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
 
+
     private void sendNotificationOnChannel(String title, String content, String channelId, int priority) {
         NotificationCompat.Builder notification = new NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.drawable.ic_launcher_background)
