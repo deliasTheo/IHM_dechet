@@ -30,11 +30,8 @@ public class MapActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Fragment dynamique menu
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Fragment fragmentMenu = new MenuFragment();
-        transaction.replace(R.id.fragment_menu, fragmentMenu);
-        transaction.commit();
+
+
 
         setContentView(R.layout.activity_map);
 
@@ -45,12 +42,14 @@ public class MapActivity extends AppCompatActivity  {
     public void onPause(){
         super.onPause();
         map.onPause();
+
     }
     @Override
     public void onResume(){
         super.onResume();
         map.onResume();
     }
+
     private void includeMap() {
         Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
         map = findViewById(R.id.mapView);

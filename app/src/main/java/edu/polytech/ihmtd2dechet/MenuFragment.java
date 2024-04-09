@@ -14,10 +14,8 @@ import android.widget.ImageView;
 public class MenuFragment extends Fragment {
     public MenuFragment() { }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
-
         ImageView logoMap = rootView.findViewById(R.id.mapPin);
 
         logoMap.setOnClickListener(view -> navigateToActivity(MapActivity.class));
