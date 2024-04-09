@@ -1,24 +1,27 @@
 package edu.polytech.ihmtd2dechet;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import static android.app.PendingIntent.getActivity;
+import static java.security.AccessController.getContext;
+import static edu.polytech.ihmtd2dechet.NotificationApplication.*;
+import androidx.fragment.app.FragmentActivity;
+
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
-public class ListActivity extends AppCompatActivity  {
+public class ListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-        Fragment fragmentMenu = new MenuFragment();
-        transaction.replace(R.id.fragment_menu, fragmentMenu);
-
-        transaction.commit();
+        findViewById(R.id.notification ).setOnClickListener(click -> {
+            String title = "Titre de la notification";
+            String message = "Message de la notification";
+            sendNotificationOnChannel(this, this, title, message, REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT);
+        });
     }
 
 }

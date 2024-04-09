@@ -7,4 +7,5 @@
     <color name="green">#BFD8AF</color>
     <color name="darkGreen">#99BC85</color>
     <color name="red">#FF0000</color>
+    <color name="linkColor">#007bff</color>
 </resources>
