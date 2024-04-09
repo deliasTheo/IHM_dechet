@@ -3,6 +3,7 @@ package edu.polytech.ihmtd2dechet;
 import static android.app.PendingIntent.getActivity;
 import static java.security.AccessController.getContext;
 import static edu.polytech.ihmtd2dechet.NotificationApplication.*;
+import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
@@ -19,7 +20,7 @@ public class ListActivity extends AppCompatActivity {
         findViewById(R.id.notification ).setOnClickListener(click -> {
             String title = "Titre de la notification";
             String message = "Message de la notification";
-            sendNotificationOnChannel(getContext(), getActivity(), title, message, REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT);
+            sendNotificationOnChannel(this, this, title, message, REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT);
         });
     }
 
