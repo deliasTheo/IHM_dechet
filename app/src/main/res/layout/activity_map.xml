@@ -5,44 +5,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
-
-
     tools:context=".MapActivity">
-
-
-
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/fragment_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
     <fragment
         android:id = "@+id/fragment_switch"
         android:name = "edu.polytech.ihmtd2dechet.SwitchFragment"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toTopOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
-    />
-
-
-    <TextView
+        />
+    <fragment
+        android:id="@+id/fragment_report"
+        android:name="edu.polytech.ihmtd2dechet.ReportFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Map"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_menu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
+        android:layout_marginBottom="5dp"
+    />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        app:layout_constraintTop_toTopOf="@id/fragment_switch"
+        app:layout_constraintStart_toEndOf="@id/fragment_switch"
+        app:layout_constraintEnd_toEndOf="parent"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtrer"
+        app:layout_constraintTop_toTopOf="@id/fragment_switch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fragment_switch"
+        />
+    <!-- <Spinner
+        android:id="@+id/filter_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinnerFilter"
+        android:prompt="@string/filtrer"
+        android:spinnerMode="dialog"
+        app:layout_constraintTop_toTopOf="@id/fragment_switch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fragment_switch"
+        /> -->
 
-
-
-    <FrameLayout android:id="@+id/fragment_menu"
+    <fragment
+        android:id="@+id/fragment_menu"
+        android:name="edu.polytech.ihmtd2dechet.MenuFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         />
+
 
 
 

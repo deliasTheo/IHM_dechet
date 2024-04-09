@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.IHMTD2Déchet" parent="Base.Theme.IHMTD2Déchet" />
+
+    <style name="Theme.ButtonGreen" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorPrimary">@color/green</item>
+    </style>
+
+
 </resources>

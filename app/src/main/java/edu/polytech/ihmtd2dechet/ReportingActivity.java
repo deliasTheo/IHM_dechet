@@ -6,12 +6,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class StatisticActivity extends AppCompatActivity {
+public class ReportingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_statistic);
+        setContentView(R.layout.activity_reporting);
     }
 }
