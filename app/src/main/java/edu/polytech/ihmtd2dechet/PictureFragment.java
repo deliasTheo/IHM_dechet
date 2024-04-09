@@ -2,6 +2,7 @@ package edu.polytech.ihmtd2dechet;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -18,14 +19,16 @@ import org.w3c.dom.Text;
 
 public class PictureFragment extends Fragment {
 
+    ImageView picture;
+
     public PictureFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_picture, container, false);
 
-        TextView pictureButton = rootView.findViewById(R.id.pictureButton);
-        pictureButton.setOnClickListener(new View.OnClickListener() {
+        picture = rootView.findViewById(R.id.pictureButton);
+        picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
@@ -41,5 +44,9 @@ public class PictureFragment extends Fragment {
     public void takePicture() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         getActivity().startActivityForResult(intent, PictureInterface.REQUEST_CAMERA);
+    }
+
+    public void setImage(Bitmap bitmap) {
+        picture.setImageBitmap(bitmap);
     }
 }
