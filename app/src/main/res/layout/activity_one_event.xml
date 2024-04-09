@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/green"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OneEventActivity">
+
+    <TextView
+        android:id="@+id/titre_page_one_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Titre"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/one_event_description"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:background="#CAC8C8"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:gravity="clip_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titre_page_one_event" />
+
+    <ImageView
+        android:id="@+id/image_evenement"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/extraLightGreen"
+        android:src="@drawable/logo_events"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titre_page_one_event"></ImageView>
+
+    <TextView
+        android:id="@+id/one_event_date"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:background="#CAC8C8"
+        android:paddingLeft="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/one_event_description" />
+
+    <TextView
+        android:id="@+id/one_event_lieu"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:background="#CAC8C8"
+        android:paddingLeft="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/one_event_date" />
+
+    <Button
+        android:id="@+id/bouton_importer"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="#4CAF50"
+
+        android:text="Importer"
+
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+    </Button>
+
+    <Button
+        android:id="@+id/bouton_retour"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="#4CAF50"
+
+        android:text="Retour"
+
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+    </Button>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

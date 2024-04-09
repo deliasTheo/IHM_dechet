@@ -11,14 +11,40 @@
 
 
     <TextView
+        android:id="@+id/Titre_page_Event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Events"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:text="Évènements"
+        android:textSize="40dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
 
-        />
+    <ListView
+        android:id="@+id/list_evenement"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+    
+    <Button
+        android:id="@+id/button_créer_evenement"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="Créer un évènement"
+        android:backgroundTint="#4CAF50"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_menu"
+         />
 
 
 
