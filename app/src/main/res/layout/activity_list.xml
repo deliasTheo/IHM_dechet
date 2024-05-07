@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkGreen"
-    tools:context=".MapActivity"
+    tools:context=".activities.MapActivity"
 >
 
     <fragment
         android:id = "@+id/fragment_switch"
-        android:name = "edu.polytech.ihmtd2dechet.SwitchFragment"
+        android:name = "edu.polytech.ihmtd2dechet.fragments.SwitchFragment"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         app:layout_constraintTop_toTopOf = "parent"
@@ -59,7 +59,7 @@
 
     <fragment
         android:id = "@+id/fragment_report"
-        android:name = "edu.polytech.ihmtd2dechet.ReportFragment"
+        android:name = "edu.polytech.ihmtd2dechet.fragments.ReportFragment"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         app:layout_constraintBottom_toTopOf = "@id/fragment_menu"
@@ -69,7 +69,7 @@
 
     <fragment
         android:id="@+id/fragment_menu"
-        android:name="edu.polytech.ihmtd2dechet.MenuFragment"
+        android:name="edu.polytech.ihmtd2dechet.fragments.MenuFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,16 +1,19 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.activities;
 
 import static android.app.PendingIntent.getActivity;
-import static java.security.AccessController.getContext;
-import static edu.polytech.ihmtd2dechet.NotificationApplication.*;
-import androidx.fragment.app.FragmentActivity;
+import static edu.polytech.ihmtd2dechet.applications.NotificationApplication.*;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.objects.WasteList;
+
 public class ListActivity extends AppCompatActivity {
+
+    private static final WasteList wasteList = WasteList.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

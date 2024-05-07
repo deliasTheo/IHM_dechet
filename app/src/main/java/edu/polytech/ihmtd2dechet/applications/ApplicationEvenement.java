@@ -1,4 +1,4 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.applications;
 
 import android.widget.ListView;
 

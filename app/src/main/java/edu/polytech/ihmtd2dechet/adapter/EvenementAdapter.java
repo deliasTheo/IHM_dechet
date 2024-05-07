@@ -1,4 +1,4 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import edu.polytech.ihmtd2dechet.objects.Evenement;
+import edu.polytech.ihmtd2dechet.R;
 
 public class EvenementAdapter extends BaseAdapter {
 

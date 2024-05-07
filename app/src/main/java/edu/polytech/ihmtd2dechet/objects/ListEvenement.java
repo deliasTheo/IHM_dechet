@@ -1,6 +1,9 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.objects;
 
 import java.util.ArrayList;
+
+import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.objects.Evenement;
 
 public class ListEvenement extends ArrayList<Evenement> {
     public ListEvenement(){

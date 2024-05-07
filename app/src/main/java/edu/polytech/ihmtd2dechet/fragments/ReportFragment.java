@@ -1,4 +1,4 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.activities.ReportingActivity;
 
 public class ReportFragment extends Fragment {
 

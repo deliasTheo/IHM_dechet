@@ -1,6 +1,4 @@
-package edu.polytech.ihmtd2dechet;
-
-import static edu.polytech.ihmtd2dechet.ApplicationEvenement.VALUE_TITRE;
+package edu.polytech.ihmtd2dechet.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,13 +6,17 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.Display;
 import android.widget.ArrayAdapter;
+
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
+import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.adapter.EvenementAdapter;
+import edu.polytech.ihmtd2dechet.fragments.MenuFragment;
+import edu.polytech.ihmtd2dechet.objects.ListEvenement;
 
 public class EventsActivity extends AppCompatActivity {
 

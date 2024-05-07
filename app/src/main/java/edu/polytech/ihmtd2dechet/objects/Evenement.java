@@ -1,4 +1,4 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.objects;
 
 public class Evenement {
     private String titre;

@@ -1,15 +1,19 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.fragments;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.app.Fragment;
 import android.widget.ImageView;
+
+import edu.polytech.ihmtd2dechet.activities.EventsActivity;
+import edu.polytech.ihmtd2dechet.activities.GuideActivity;
+import edu.polytech.ihmtd2dechet.activities.MapActivity;
+import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.activities.StatisticActivity;
 
 public class MenuFragment extends Fragment {
     public MenuFragment() { }
