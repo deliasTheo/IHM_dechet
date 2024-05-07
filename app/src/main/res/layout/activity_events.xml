@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green"
-    tools:context=".EventsActivity">
-
+    tools:context=".activities.EventsActivity">
 
 
     <TextView
@@ -24,7 +23,7 @@
     </TextView>
 
     <ListView
-        android:id="@+id/list_evenement"
+        android:id="@+id/liste_evenements"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="80dp"
         android:layout_width="match_parent"
@@ -52,7 +51,7 @@
 
     <fragment
         android:id="@+id/fragment_menu"
-        android:name="edu.polytech.ihmtd2dechet.MenuFragment"
+        android:name="edu.polytech.ihmtd2dechet.fragments.MenuFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

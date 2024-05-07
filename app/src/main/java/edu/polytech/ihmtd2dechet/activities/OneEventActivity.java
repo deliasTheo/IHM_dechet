@@ -1,11 +1,12 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class OneEventActivity extends AppCompatActivity {
+import edu.polytech.ihmtd2dechet.R;
 
+public class OneEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

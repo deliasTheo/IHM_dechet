@@ -1,4 +1,4 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.fragments;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import edu.polytech.ihmtd2dechet.activities.ListActivity;
+import edu.polytech.ihmtd2dechet.activities.MapActivity;
+import edu.polytech.ihmtd2dechet.R;
 
 public class SwitchFragment extends Fragment {
 

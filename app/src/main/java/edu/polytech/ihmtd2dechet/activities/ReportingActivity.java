@@ -1,4 +1,4 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.activities;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import edu.polytech.ihmtd2dechet.R;
 
 public class ReportingActivity extends AppCompatActivity {
 

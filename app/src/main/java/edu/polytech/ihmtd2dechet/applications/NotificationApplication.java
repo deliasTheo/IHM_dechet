@@ -1,4 +1,4 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.applications;
 
 import android.app.Activity;
 import android.app.Application;
@@ -13,6 +13,8 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import java.util.Objects;
+
+import edu.polytech.ihmtd2dechet.R;
 
 public class NotificationApplication extends Application {
 

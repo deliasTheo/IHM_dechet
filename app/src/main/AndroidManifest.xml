@@ -15,7 +15,7 @@
     <uses-feature android:name="android.hardware.location" android:required="true"/>
 
     <application
-        android:name = ".NotificationApplication"
+        android:name = ".applications.NotificationApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -26,10 +26,10 @@
         android:theme="@style/Theme.IHMTD2Déchet"
         tools:targetApi="31">
         <activity
-            android:name=".OneEventActivity"
+            android:name=".activities.OneEventActivity"
             android:exported="false" />
         <activity
-            android:name=".MapActivity"
+            android:name=".activities.MapActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,25 +38,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".StatisticActivity"
+            android:name=".activities.StatisticActivity"
 
             android:exported="true"/>
         <activity
-            android:name=".ListActivity"
+            android:name=".activities.ListActivity"
             android:exported="true"/>
         <activity
-            android:name=".GuideActivity"
+            android:name=".activities.GuideActivity"
             android:exported="true" />
         <activity
-            android:name=".EventsActivity"
+            android:name=".activities.EventsActivity"
 
             android:exported="true" />
         <activity
-            android:name=".CreateEventActivity"
+            android:name=".activities.CreateEventActivity"
             android:exported="true" />
 
         <activity
-            android:name=".ReportingActivity"
+            android:name=".activities.ReportingActivity"
             android:exported="true"/>
 
 
