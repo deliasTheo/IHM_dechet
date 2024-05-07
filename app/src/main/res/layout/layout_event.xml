@@ -93,7 +93,6 @@
                 android:onClick="onImporterButtonClick">
             </TextView>
 
-
         </LinearLayout>
 
     </LinearLayout>
