@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Titre"
+        android:text="Signaler un déchet"
+        android:textColor="@color/black"
         android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,18 +22,21 @@
     </TextView>
 
 
-    <TextView
+    <EditText
         android:id="@+id/report_description"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="35dp"
         android:background="#CAC8C8"
+        android:textColor="@color/black"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp"
         android:gravity="clip_horizontal"
+        android:hint="Saisir la description du déchet"
+        android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titre_report" />
+        app:layout_constraintTop_toBottomOf="@+id/titre_report"
+        />
 
     <fragment
         android:id = "@+id/fragment_picture"
@@ -47,30 +51,38 @@
         app:layout_constraintTop_toBottomOf="@+id/titre_report"
         />
 
-    <TextView
-        android:id="@+id/report_type_dechet"
+    <EditText
+        android:id="@+id/report_waste_position"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="35dp"
         android:background="#CAC8C8"
+        android:textColor="@color/black"
         android:paddingLeft="15dp"
+        android:hint="emplacement du déchet"
+        android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/report_description" />
+        app:layout_constraintTop_toBottomOf="@id/report_description"
+        />
 
     <TextView
-        android:id="@+id/report_lieu"
+        android:id="@+id/report_waste_type"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="35dp"
         android:background="#CAC8C8"
+        android:textColor="@color/black"
+        android:textSize="18dp"
         android:paddingLeft="15dp"
+        android:hint="Sélectionner un type de déchet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/report_type_dechet" />
+        app:layout_constraintTop_toBottomOf="@id/report_waste_position"
+        />
 
     <Button
-        android:id="@+id/bouton_importer"
+        android:id="@+id/bouton_signaler"
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginRight="30dp"
