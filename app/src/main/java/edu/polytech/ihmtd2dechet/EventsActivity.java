@@ -9,7 +9,9 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Display;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +22,10 @@ public class EventsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Fragment fragmentMenu = new MenuFragment();
         transaction.replace(R.id.fragment_menu, fragmentMenu);
         transaction.commit();
-
 
         setContentView(R.layout.activity_events);
 
@@ -34,6 +34,13 @@ public class EventsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        ListEvenement listEvenement = new ListEvenement();
 
-    }
+        EvenementAdapter adapter = new EvenementAdapter(getApplicationContext(), listEvenement, getLayoutInflater());
+
+        ListView listView = findViewById(R.id.liste_evenements);
+
+        listView.setAdapter(adapter);
+        }
+
 }

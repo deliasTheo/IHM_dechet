@@ -23,7 +23,7 @@
     </TextView>
 
     <ListView
-        android:id="@+id/list_evenement"
+        android:id="@+id/liste_evenements"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="80dp"
         android:layout_width="match_parent"
