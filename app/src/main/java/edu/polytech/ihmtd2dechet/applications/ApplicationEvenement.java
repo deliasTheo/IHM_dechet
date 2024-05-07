@@ -1,4 +1,4 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.applications;
 
 public class ApplicationEvenement {
     public static String VALUE_TITRE = "valeur titre";

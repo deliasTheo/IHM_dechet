@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".GuideActivity">
+    tools:context=".activities.GuideActivity">
 
 
     <Button
@@ -133,7 +133,7 @@
 
     <fragment
         android:id="@+id/fragment_menu"
-        android:name="edu.polytech.ihmtd2dechet.MenuFragment"
+        android:name="edu.polytech.ihmtd2dechet.fragments.MenuFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

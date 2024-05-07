@@ -1,6 +1,5 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.activities;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,7 +7,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import static edu.polytech.ihmtd2dechet.ApplicationEvenement.*;
+import static edu.polytech.ihmtd2dechet.applications.ApplicationEvenement.*;
+
+import edu.polytech.ihmtd2dechet.R;
 
 public class CreateEventActivity extends AppCompatActivity {
 

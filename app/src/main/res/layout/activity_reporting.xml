@@ -5,7 +5,7 @@
     android:background="@color/green"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReportingActivity">
+    tools:context=".activities.ReportingActivity">
 
     <TextView
         android:id="@+id/titre_report"
@@ -36,7 +36,7 @@
 
     <fragment
         android:id = "@+id/fragment_picture"
-        android:name = "edu.polytech.ihmtd2dechet.PictureFragment"
+        android:name = "edu.polytech.ihmtd2dechet.fragments.PictureFragment"
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginTop="35dp"

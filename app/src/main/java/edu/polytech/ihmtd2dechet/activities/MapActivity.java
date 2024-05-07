@@ -1,16 +1,10 @@
-package edu.polytech.ihmtd2dechet;
+package edu.polytech.ihmtd2dechet.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 
-import android.app.Fragment;
-
-import android.app.FragmentTransaction;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -23,7 +17,13 @@ import org.osmdroid.views.overlay.OverlayItem;
 
 import java.util.ArrayList;
 
+import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.objects.WasteList;
+
 public class MapActivity extends AppCompatActivity  {
+
+    private static final WasteList wasteList = WasteList.getInstance();
+
     private MapView map;
 
     @Override

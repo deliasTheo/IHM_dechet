@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green"
-    tools:context=".CreateEventActivity">
+    tools:context=".activities.CreateEventActivity">
 
     <TextView
         android:id="@+id/titre_page_create_event"
