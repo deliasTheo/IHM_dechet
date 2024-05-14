@@ -45,4 +45,6 @@ public class EventsActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         }
 
+
+
 }
