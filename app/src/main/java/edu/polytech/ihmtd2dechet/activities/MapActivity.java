@@ -22,11 +22,11 @@ import org.osmdroid.views.overlay.OverlayItem;
 import java.util.ArrayList;
 
 import edu.polytech.ihmtd2dechet.R;
-import edu.polytech.ihmtd2dechet.objects.WasteList;
+import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
 public class MapActivity extends AppCompatActivity  {
 
-    private static final WasteList wasteList = WasteList.getInstance();
+    private static final ReportsList wasteList = ReportsList.getInstance();
 
     private MapView map;
 
