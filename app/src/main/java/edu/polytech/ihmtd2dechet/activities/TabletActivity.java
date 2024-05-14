@@ -1,14 +1,14 @@
 package edu.polytech.ihmtd2dechet.activities;
 
-import static com.google.android.gms.common.util.DeviceProperties.isTablet;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
-
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.widget.ListView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.preference.PreferenceManager;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -22,43 +22,23 @@ import org.osmdroid.views.overlay.OverlayItem;
 import java.util.ArrayList;
 
 import edu.polytech.ihmtd2dechet.R;
-import edu.polytech.ihmtd2dechet.objects.WasteList;
+import edu.polytech.ihmtd2dechet.adapter.SignalementAdapter;
+import edu.polytech.ihmtd2dechet.objects.ListSignalement;
 
-public class MapActivity extends AppCompatActivity  {
-
-    private static final WasteList wasteList = WasteList.getInstance();
+public class TabletActivity extends AppCompatActivity {
 
     private MapView map;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (isTablet()) {
-
-            Intent intent = new Intent(this, TabletActivity.class);
-            startActivity(intent);
-
-            finish();
-        } else {
-
-            setContentView(R.layout.activity_map);
-            includeMap();
-        }
-
-
-
-
-    }
-    @Override
-    public void onPause(){
-        super.onPause();
-        map.onPause();
-
-    }
-    @Override
-    public void onResume(){
-        super.onResume();
-        map.onResume();
+        setContentView(R.layout.activity_tablet_list);
+        ListSignalement listSignalement = new ListSignalement();
+        SignalementAdapter adapter = new SignalementAdapter(getApplicationContext(), listSignalement, getLayoutInflater());
+        ListView listView = findViewById(R.id.liste_signalement);
+        listView.setAdapter(adapter);
+        includeMap();
     }
 
     private void includeMap() {
@@ -92,14 +72,6 @@ public class MapActivity extends AppCompatActivity  {
         map.getOverlays().add(mOverlay);
     }
 
-    private boolean isTablet() {
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        float screenWidthInDp = displayMetrics.widthPixels / displayMetrics.density;
-        float screenHeightInDp = displayMetrics.heightPixels / displayMetrics.density;
-        float screenSize = Math.min(screenWidthInDp, screenHeightInDp);
-
-        return screenSize >= 700;
-    }
 
 
 }
