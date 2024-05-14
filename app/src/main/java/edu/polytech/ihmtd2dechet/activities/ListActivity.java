@@ -4,7 +4,6 @@ import static android.app.PendingIntent.getActivity;
 
 import static edu.polytech.ihmtd2dechet.applications.NotificationApplication.*;
 
-import android.content.Intent;
 import android.widget.ListView;
 
 import android.os.Bundle;
@@ -14,14 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
 import edu.polytech.ihmtd2dechet.R;
-import edu.polytech.ihmtd2dechet.adapter.SignalementAdapter;
+import edu.polytech.ihmtd2dechet.adapter.ReportAdapter;
 
-import edu.polytech.ihmtd2dechet.objects.ListSignalement;
-import edu.polytech.ihmtd2dechet.objects.WasteList;
+import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
 public class ListActivity extends AppCompatActivity {
-
-    private static final WasteList wasteList = WasteList.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +30,7 @@ public class ListActivity extends AppCompatActivity {
             sendNotificationOnChannel(this, this, title, message, REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT);
         });
 
-
-        ListSignalement listSignalement = new ListSignalement();
-
-        SignalementAdapter adapter = new SignalementAdapter(getApplicationContext(), listSignalement, getLayoutInflater());
+        ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
 
         ListView listView = findViewById(R.id.liste_signalement);
 

@@ -62,7 +62,7 @@
             android:name=".activities.CreateEventActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.ReportingActivity"
+            android:name=".activities.ReportActivity"
             android:exported="true" />
     </application>
 

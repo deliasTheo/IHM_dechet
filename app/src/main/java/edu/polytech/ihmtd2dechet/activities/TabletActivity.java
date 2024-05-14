@@ -3,11 +3,7 @@ package edu.polytech.ihmtd2dechet.activities;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
 
 import org.osmdroid.api.IMapController;
@@ -22,8 +18,8 @@ import org.osmdroid.views.overlay.OverlayItem;
 import java.util.ArrayList;
 
 import edu.polytech.ihmtd2dechet.R;
-import edu.polytech.ihmtd2dechet.adapter.SignalementAdapter;
-import edu.polytech.ihmtd2dechet.objects.ListSignalement;
+import edu.polytech.ihmtd2dechet.adapter.ReportAdapter;
+import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
 public class TabletActivity extends AppCompatActivity {
 
@@ -34,8 +30,7 @@ public class TabletActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tablet_list);
-        ListSignalement listSignalement = new ListSignalement();
-        SignalementAdapter adapter = new SignalementAdapter(getApplicationContext(), listSignalement, getLayoutInflater());
+        ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
         ListView listView = findViewById(R.id.liste_signalement);
         listView.setAdapter(adapter);
         includeMap();
