@@ -22,32 +22,26 @@ import org.osmdroid.views.overlay.OverlayItem;
 import java.util.ArrayList;
 
 import edu.polytech.ihmtd2dechet.R;
-import edu.polytech.ihmtd2dechet.objects.WasteList;
+import edu.polytech.ihmtd2dechet.objects.Report;
+import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
 public class MapActivity extends AppCompatActivity  {
 
-    private static final WasteList wasteList = WasteList.getInstance();
-
+    private static final ReportsList wasteList = ReportsList.getInstance();
     private MapView map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (isTablet()) {
-
             Intent intent = new Intent(this, TabletActivity.class);
             startActivity(intent);
 
             finish();
         } else {
-
             setContentView(R.layout.activity_map);
             includeMap();
         }
-
-
-
-
     }
     @Override
     public void onPause(){
@@ -72,8 +66,10 @@ public class MapActivity extends AppCompatActivity  {
         mapController.setCenter(startPoint);
 
         ArrayList<OverlayItem> items= new ArrayList<>();
-        items.add(new OverlayItem("Signalement 1", "", new GeoPoint(43.65020, 7.00517)));
-        items.add(new OverlayItem("Signalement 2", "", new GeoPoint(43.64950, 7.00517)));
+
+        for (Report item:ReportsList.getInstance().get()) {
+            items.add(new OverlayItem(item.getTitle(), "", item.getLocation()));
+        }
 
         ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getApplicationContext(),
                 items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {

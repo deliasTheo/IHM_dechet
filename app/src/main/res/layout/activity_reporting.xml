@@ -5,7 +5,7 @@
     android:background="@color/green"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ReportingActivity">
+    tools:context=".activities.ReportActivity">
 
     <TextView
         android:id="@+id/titre_report"

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import edu.polytech.ihmtd2dechet.R;
-import edu.polytech.ihmtd2dechet.activities.ReportingActivity;
+import edu.polytech.ihmtd2dechet.activities.ReportActivity;
 
 public class ReportFragment extends Fragment {
 
@@ -22,7 +22,7 @@ public class ReportFragment extends Fragment {
 
         TextView report = rootView.findViewById(R.id.report);
         report.setOnClickListener(click -> {
-            Intent intent = new Intent(getContext(), ReportingActivity.class);
+            Intent intent = new Intent(getContext(), ReportActivity.class);
             startActivity(intent);
         });
 

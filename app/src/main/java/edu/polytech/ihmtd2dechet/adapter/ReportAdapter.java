@@ -8,52 +8,60 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import edu.polytech.ihmtd2dechet.R;
-import edu.polytech.ihmtd2dechet.objects.Signalement;
+import edu.polytech.ihmtd2dechet.objects.Report;
 
-public class SignalementAdapter extends BaseAdapter {
+public class ReportAdapter extends BaseAdapter {
 
 
-    private ArrayList<Signalement> signalements;
-    private LayoutInflater inflater;
-    private Context context;
+    private final List<Report> reports;
+    private final LayoutInflater inflater;
+    private final Context context;
 
-    public SignalementAdapter(Context context, ArrayList<Signalement> signalements, LayoutInflater inflater) {
+    public ReportAdapter(Context context, List<Report> reports, LayoutInflater inflater) {
         this.context = context;
-        this.signalements = signalements;
+        this.reports = reports;
         this.inflater = inflater;
     }
 
+
     @Override
     public int getCount() {
-        return signalements.size();
+        return reports.size();
     }
+
 
     @Override
     public Object getItem(int position) {
-        return signalements.get(position);
+        return reports.get(position);
     }
+
 
     @Override
     public long getItemId(int position) {
         return position;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflater.inflate(R.layout.layout_signalement, null);
-        TextView titre = view.findViewById(R.id.titre_layout_signalement);
+
+        TextView title = view.findViewById(R.id.titre_layout_signalement);
+        title.setText(reports.get(position).getTitle());
+
         TextView description = view.findViewById(R.id.description_layout_signalement);
+        description.setText(reports.get(position).getDescription());
+
         ImageView image = view.findViewById(R.id.image_layout_signalement);
-        TextView lieu = view.findViewById(R.id.lieu_layout_signalement);
-        titre.setText(signalements.get(position).getTitre());
-        lieu.setText(signalements.get(position).getLieu());
-        description.setText(signalements.get(position).getDescription());
-        image.setImageResource(signalements.get(position).getImage());
+        image.setImageResource(reports.get(position).getImage());
+
+        TextView location = view.findViewById(R.id.lieu_layout_signalement);
+        location.setText(reports.get(position).getLocation().toString());
+
         return view;
     }
-
 
 }
