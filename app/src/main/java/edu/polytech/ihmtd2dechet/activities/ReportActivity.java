@@ -1,19 +1,11 @@
 package edu.polytech.ihmtd2dechet.activities;
 
-import static edu.polytech.ihmtd2dechet.applications.ApplicationEvenement.VALUE_DATE;
-import static edu.polytech.ihmtd2dechet.applications.ApplicationEvenement.VALUE_DESCRIPTION;
-import static edu.polytech.ihmtd2dechet.applications.ApplicationEvenement.VALUE_LIEU;
-import static edu.polytech.ihmtd2dechet.applications.ApplicationEvenement.VALUE_TITRE;
-
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +17,7 @@ import edu.polytech.ihmtd2dechet.R;
 import edu.polytech.ihmtd2dechet.interfaces.PictureInterface;
 import edu.polytech.ihmtd2dechet.fragments.PictureFragment;
 
-public class ReportingActivity extends AppCompatActivity {
+public class ReportActivity extends AppCompatActivity {
 
     private Bitmap picture;
     private PictureFragment pictureFragment;
@@ -53,7 +45,7 @@ public class ReportingActivity extends AppCompatActivity {
         wasteType.setOnClickListener(click ->
         {
             final String[] items = {"Encombrant", "Non Encombrant", "Déchet toxique"};
-            AlertDialog.Builder builder = new AlertDialog.Builder(ReportingActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(ReportActivity.this);
             builder.setTitle("Sélectionner type de déchet");
             builder.setItems(items, new DialogInterface.OnClickListener() {
                 @Override

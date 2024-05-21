@@ -6,10 +6,31 @@
     <string name="d_cheterie_ad_quate">Décheterie adéquate :</string>
 
 
-    <string-array name= "data">
-        <item>premier élément</item>
-        <item>deuxième élément</item>
-        <item>dernier élément</item>
+    <string-array name="data">
+        <item>Element : 1</item>
+        <item>Element : 2</item>
+        <item>Element : 3</item>
+        <item>Element : 4</item>
+        <item>Element : 5</item>
+        <item>Element : 6</item>
+        <item>Element : 7</item>
+        <item>Element : 8</item>
+        <item>Element : 9</item>
+        <item>Element : 10</item>
+        <item>Element : 11</item>
+        <item>Element : 12</item>
+        <item>Element : 1</item>
+        <item>Element : 2</item>
+        <item>Element : 3</item>
+        <item>Element : 4</item>
+        <item>Element : 5</item>
+        <item>Element : 6</item>
+        <item>Element : 7</item>
+        <item>Element : 8</item>
+        <item>Element : 9</item>
+        <item>Element : 10</item>
+        <item>Element : 11</item>
+        <item>Element : 12</item>
     </string-array>
 
     <string name="filtrer">Filtrer</string>

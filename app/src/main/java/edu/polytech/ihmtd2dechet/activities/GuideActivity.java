@@ -13,6 +13,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.objects.Guide;
+import edu.polytech.ihmtd2dechet.objects.GuideFactory;
 
 public class GuideActivity extends AppCompatActivity {
 
@@ -35,54 +37,14 @@ public class GuideActivity extends AppCompatActivity {
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String selectedItem = items[which];
-                        if(selectedItem.equals("Encombrant")) {
-                            String infoGen = "Les déchets encombrants se réfèrent généralement" +
-                                    " à des articles de grande taille qui ne peuvent pas être " +
-                                    "jetés dans une poubelle standard. Cela inclut des objets " +
-                                    "tels que des meubles, des électroménagers, des matelas, " +
-                                    "des vélos, etc.";
-                            String decheterie = "Collecte Municipale : Vérifiez le calendrier de collecte des encombrants dans votre région." +
-                                    " Certains services municipaux proposent des collectes spéciales pour les gros articles." +
-                                    "Déchèterie ou Centre de Recyclage : Vous pouvez également apporter vos déchets encombrants à une" +
-                                    " déchèterie ou à un centre de recyclage désigné.";
-                            Toast.makeText(GuideActivity.this, "Vous avez sélectionné " + selectedItem, Toast.LENGTH_SHORT).show();
-                            textView.setText(infoGen);
-                            textView2.setText(decheterie);
+                        try {
+                            Guide guide = GuideFactory.build(which+1);
+                            Toast.makeText(GuideActivity.this, "Vous avez sélectionné " + guide.getType(), Toast.LENGTH_SHORT).show();
+                            textView.setText(guide.getInformationGeneral());
+                            textView2.setText(guide.getOuComment());
+                        } catch (Throwable e) {
+                            throw new RuntimeException(e);
                         }
-                        if(selectedItem.equals("Non Encombrant")) {
-                            String infoGen = "Ce sont des déchets qui peuvent être jetés avec les ordures ménagères" +
-                                    " régulières. Ce sont généralement des déchets de taille et de poids normaux," +
-                                    " tels que les emballages en carton, les plastiques, le verre, etc." ;
-                            String decheterie =
-                                    "1. Poubelle grise ou bac gris : pour les déchets non recyclables ou non compostables.\n" +
-                                            "2. Poubelle jaune ou bac jaune : pour les emballages recyclables tels que le plastique, le métal et le carton.\n" +
-                                            "3. Poubelle verte ou bac vert : pour les déchets organiques compostables comme les restes de fruits et légumes.\n" +
-                                            "4. Poubelle bleue ou bac bleu : pour les papiers et cartons à recycler.\n" +
-                                            "5. Poubelle marron ou bac marron : pour les déchets végétaux destinés au compostage.\n" ;
-
-                            Toast.makeText(GuideActivity.this, "Vous avez sélectionné " + selectedItem, Toast.LENGTH_SHORT).show();
-                            textView.setText(infoGen);
-                            textView2.setText(decheterie);
-                        }
-                        if(selectedItem.equals("Déchet toxique")) {
-                            String infoGen = "Ce sont des déchets qui contiennent des substances nocives pour" +
-                                    " l'environnement ou la santé humaine. Cela inclut les piles, les produits" +
-                                    " chimiques ménagers, les peintures, les solvants, etc. Ils doivent être " +
-                                    "éliminés de manière spécifique pour éviter toute contamination. ";
-
-                            String decheterie = "Nous vous déconseillons de prendre action tous seuls , si vous estimez que le déchet est dangereux " +
-                                    "veuillez informer les services adéquats.\n" +
-                                    "Signalez le sur l'application\n" +
-                                    "Voici quelques numéros à contacter :\n" +
-                                    "Service de nettoyage : 06583840284";
-
-                            Toast.makeText(GuideActivity.this, "Vous avez sélectionné " + selectedItem, Toast.LENGTH_SHORT).show();
-                            textView.setText(infoGen);
-                            textView2.setText(decheterie);
-
-                        }
-
                     }
                 });
                 AlertDialog dialog = builder.create();

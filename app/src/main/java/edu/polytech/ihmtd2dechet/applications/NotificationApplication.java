@@ -1,5 +1,6 @@
 package edu.polytech.ihmtd2dechet.applications;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
 import android.app.NotificationChannel;
@@ -38,7 +39,7 @@ public class NotificationApplication extends Application {
         if (Build.VERSION_CODES.O <= Build.VERSION.SDK_INT) {
             NotificationManager manager = getSystemService(NotificationManager.class);
 
-            NotificationChannel eventChannel = new NotificationChannel(EVENT_CHANNEL, EVENT_CHANNEL, NotificationManager.IMPORTANCE_LOW);
+            NotificationChannel eventChannel = new NotificationChannel(EVENT_CHANNEL, EVENT_CHANNEL, NotificationManager.IMPORTANCE_DEFAULT);
             eventChannel.setDescription("This channel is used to send notification about upcoming events.");
             Objects.requireNonNull(manager).createNotificationChannel(eventChannel);
 
@@ -55,9 +56,8 @@ public class NotificationApplication extends Application {
                 .setContentTitle(title)
                 .setContentText(content)
                 .setPriority(priority);
-        if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[] {android.Manifest.permission.POST_NOTIFICATIONS}, NOTIFICATION_REQUEST_CODE);
-            return;
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(activity, new String[] {Manifest.permission.POST_NOTIFICATIONS}, NOTIFICATION_REQUEST_CODE);
         }
         NotificationManagerCompat.from(context).notify(notificationId++, notification.build());
     }
