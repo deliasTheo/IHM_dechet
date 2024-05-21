@@ -68,7 +68,7 @@ public class MapActivity extends AppCompatActivity  {
         ArrayList<OverlayItem> items= new ArrayList<>();
 
         for (Report item:ReportsList.getInstance().get()) {
-            items.add(new OverlayItem(item.getTitle(), "", item.getLocation()));
+            items.add(new OverlayItem(item.getDescription(), "", item.getLocation()));
         }
 
         ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getApplicationContext(),

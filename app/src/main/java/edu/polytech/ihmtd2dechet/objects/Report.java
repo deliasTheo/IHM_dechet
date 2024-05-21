@@ -6,7 +6,6 @@ public class Report {
 
     private final String title;
     private final String description;
-
     private final Avancement advancement ;
     private final GeoPoint location;
     private final int image;

@@ -9,7 +9,6 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,7 +16,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.firebase.Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,24 +35,22 @@ public class EventsActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    ListView listView = findViewById(R.id.list_events);
+    ListView listView;
     ArrayList<Event> listEvent = new ListEvent();
-    EventAdapter adapter = new EventAdapter(getApplicationContext(), listEvent, getLayoutInflater());
+    EventAdapter adapter;
 
     Button btValider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Fragment fragmentMenu = new MenuFragment();
-        transaction.replace(R.id.fragment_menu, fragmentMenu);
-        transaction.commit();
-
         setContentView(R.layout.activity_events);
 
-        ((Button)findViewById(R.id.button_create_event)).setOnClickListener(click -> {
+        // Initialize views after setContentView
+        listView = findViewById(R.id.list_events);
+        adapter = new EventAdapter(getApplicationContext(), listEvent, getLayoutInflater());
+
+        ((Button) findViewById(R.id.button_create_event)).setOnClickListener(click -> {
             Intent intent = new Intent(getApplicationContext(), CreateEventActivity.class);
             startActivity(intent);
         });
@@ -70,15 +66,19 @@ public class EventsActivity extends AppCompatActivity {
         });
 
         // Initialize database
-
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         // Initialize database reference
-
         databaseReference = firebaseDatabase.getReference().child("");
 
+        // Get events from the database
         getEvent();
 
+        // Add fragment transaction after views initialization
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Fragment fragmentMenu = new MenuFragment();
+        transaction.replace(R.id.fragment_menu, fragmentMenu);
+        transaction.commit();
     }
 
     private void getEvent() {
@@ -86,11 +86,11 @@ public class EventsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listEvent.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Event sEvent = dataSnapshot.child("Event").getValue(Event.class);
                     listEvent.add(sEvent);
                 }
-                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -100,9 +100,9 @@ public class EventsActivity extends AppCompatActivity {
         });
     }
 
-    public void onClickEvent(Event item){
+    public void onClickEvent(Event item) {
         Intent intent = new Intent(getApplicationContext(), OneEventActivity.class);
-        intent.putExtra(EVENT, (Parcelable)item);
+        intent.putExtra(EVENT, (Parcelable) item);
         startActivity(intent);
     }
 }
