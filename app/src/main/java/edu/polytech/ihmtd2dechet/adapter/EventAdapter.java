@@ -10,29 +10,29 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import edu.polytech.ihmtd2dechet.objects.Evenement;
+import edu.polytech.ihmtd2dechet.objects.Event;
 import edu.polytech.ihmtd2dechet.R;
 
-public class EvenementAdapter extends BaseAdapter {
+public class EventAdapter extends BaseAdapter {
 
-    private ArrayList<Evenement> evenements;
+    private ArrayList<Event> events;
     private LayoutInflater inflater;
     private Context context;
 
-    public EvenementAdapter(Context context, ArrayList<Evenement> evenements, LayoutInflater inflater) {
+    public EventAdapter(Context context, ArrayList<Event> events, LayoutInflater inflater) {
         this.context = context;
-        this.evenements = evenements;
+        this.events = events;
         this.inflater = inflater;
     }
 
     @Override
     public int getCount() {
-        return evenements.size();
+        return events.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return evenements.get(position);
+        return events.get(position);
     }
 
     @Override
@@ -43,15 +43,15 @@ public class EvenementAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflater.inflate(R.layout.layout_event, null);
-        TextView titre = view.findViewById(R.id.titre_layout_event);
-        TextView lieu = view.findViewById(R.id.lieu_layout_event);
+        TextView title = view.findViewById(R.id.title_layout_event);
+        TextView location = view.findViewById(R.id.location_layout_event);
         TextView date = view.findViewById(R.id.date_layout_event);
         ImageView image = view.findViewById(R.id.image_layout_event);
 
-        titre.setText(evenements.get(position).getTitre());
-        lieu.setText(evenements.get(position).getLieu());
-        date.setText(evenements.get(position).getDate());
-        image.setImageResource(evenements.get(position).getImage());
+        title.setText(events.get(position).getTitle());
+        location.setText(events.get(position).getLocation());
+        date.setText(events.get(position).getDate());
+        image.setImageResource(events.get(position).getImage());
 
         return view;
     }

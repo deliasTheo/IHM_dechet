@@ -8,7 +8,7 @@
     tools:context=".activities.CreateEventActivity">
 
     <TextView
-        android:id="@+id/titre_page_create_event"
+        android:id="@+id/title_page_create_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -19,9 +19,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></TextView>
 
-
     <EditText
-        android:id="@+id/saisi_titre"
+        android:id="@+id/input_title"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -31,10 +30,10 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titre_page_create_event" />
+        app:layout_constraintTop_toBottomOf="@+id/title_page_create_event" />
 
     <EditText
-        android:id="@+id/saisi_description"
+        android:id="@+id/input_description"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginLeft="20dp"
@@ -45,10 +44,10 @@
         android:hint="Saisir la description de l'évènement"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saisi_titre" />
+        app:layout_constraintTop_toBottomOf="@+id/input_title" />
 
     <ImageView
-        android:id="@+id/image_evenement"
+        android:id="@+id/image_event"
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginTop="35dp"
@@ -56,10 +55,10 @@
         android:background="@color/extraLightGreen"
         android:src="@drawable/logo_events"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saisi_titre"></ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/input_title"></ImageView>
 
     <EditText
-        android:id="@+id/saisi_date"
+        android:id="@+id/input_date"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -69,10 +68,10 @@
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/saisi_description" />
+        app:layout_constraintTop_toBottomOf="@id/input_description" />
 
     <EditText
-        android:id="@+id/saisi_lieu"
+        android:id="@+id/input_location"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -82,7 +81,7 @@
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/saisi_date" />
+        app:layout_constraintTop_toBottomOf="@id/input_date" />
 
     <Button
         android:id="@+id/bouton_valider"

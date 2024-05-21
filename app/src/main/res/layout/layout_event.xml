@@ -15,7 +15,7 @@
             android:layout_height="30dp">
 
             <TextView
-                android:id="@+id/titre_layout_event"
+                android:id="@+id/title_layout_event"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
@@ -29,71 +29,30 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/lieu_layout_event"
+                android:id="@+id/location_layout_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="Lieu"
-                android:textSize="15dp">
+                android:textSize="20dp">
             </TextView>
 
             <TextView
                 android:id="@+id/date_layout_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginLeft="50dp"
                 android:text="Date"
-                android:textSize="15dp">
+                android:textSize="20dp">
             </TextView>
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/supprimer_layout_event"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/linkColor"
-                android:text="supprimer"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="onSupprimerButtonClick">
-            </TextView>
-
-            <TextView
-                android:id="@+id/modifier_layout_event"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/linkColor"
-                android:text="modifier"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="onModifierButtonClick">
-            </TextView>
-
-            <TextView
-                android:id="@+id/importer_layout_event"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/linkColor"
-                android:text="importer"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="onImporterButtonClick">
-            </TextView>
-
-        </LinearLayout>
 
     </LinearLayout>
 
