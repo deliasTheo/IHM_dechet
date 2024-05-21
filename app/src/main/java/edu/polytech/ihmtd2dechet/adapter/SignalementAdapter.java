@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import edu.polytech.ihmtd2dechet.R;
-import edu.polytech.ihmtd2dechet.objects.Evenement;
 import edu.polytech.ihmtd2dechet.objects.Signalement;
 
 public class SignalementAdapter extends BaseAdapter {

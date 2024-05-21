@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="evenements">
+    <string-array name="events">
         <item>Évènement 1</item>
         <item>Évènement 2</item>
         <item>Évènement 3</item>
