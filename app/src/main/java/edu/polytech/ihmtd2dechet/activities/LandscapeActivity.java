@@ -2,7 +2,10 @@ package edu.polytech.ihmtd2dechet.activities;
 
 
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 
 import edu.polytech.ihmtd2dechet.R;
 import edu.polytech.ihmtd2dechet.adapter.ReportAdapter;
+import edu.polytech.ihmtd2dechet.objects.Report;
 import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
 public class LandscapeActivity  extends AppCompatActivity {
@@ -31,11 +35,24 @@ public class LandscapeActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landscape_list);
-        ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
-        ListView listView = findViewById(R.id.liste_signalement);
-        listView.setAdapter(adapter);
-        includeMap();
+        if(isLandcape()) {
+            setContentView(R.layout.activity_landscape_list);
+            ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
+            ListView listView = findViewById(R.id.liste_signalement);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener((parent, view, position, id) -> {
+                Report report = (Report) adapter.getItem(position);
+                showStatusDialog(report, adapter);
+            });
+            includeMap();
+        }else {
+            Intent intent = new Intent(this, ListActivity.class);
+            startActivity(intent);
+
+            finish();
+
+        }
+
     }
 
     private void includeMap() {
@@ -67,6 +84,42 @@ public class LandscapeActivity  extends AppCompatActivity {
 
         mOverlay.setFocusItemsOnTap(true);
         map.getOverlays().add(mOverlay);
+    }
+
+
+    private boolean isLandcape(){
+        Display display = getWindowManager().getDefaultDisplay();
+        int width = display.getWidth();
+        int height = display.getHeight();
+        if(width < height){
+            return false  ;
+        } else {
+            return true ;
+        }
+    }
+
+    private void showStatusDialog(Report report, ReportAdapter adapter) {
+        String[] statuses = {"A faire", "En cours", "Finis"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choisissez le statut")
+                .setItems(statuses, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            report.setAdvancement("A faire");
+                            break;
+                        case 1:
+                            report.setAdvancement("En cours");
+                            break;
+                        case 2:
+                            report.setAdvancement("Finis");
+                            break;
+                    }
+                    adapter.notifyDataSetChanged();
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 

@@ -5,6 +5,8 @@ import static android.app.PendingIntent.getActivity;
 import static edu.polytech.ihmtd2dechet.applications.NotificationApplication.*;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.view.Display;
 import android.widget.ListView;
 
 import android.os.Bundle;
@@ -24,23 +26,33 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+         if (isLandcape()){
+            Intent intent = new Intent(this, LandscapeActivity.class);
+            startActivity(intent);
+            finish();
 
-        findViewById(R.id.notification).setOnClickListener(click -> {
-            String title = "Titre de la notification";
-            String message = "Message de la notification";
-            sendNotificationOnChannel(this, this, title, message, REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT);
-        });
 
-        ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
 
-        ListView listView = findViewById(R.id.liste_signalement);
-        listView.setAdapter(adapter);
+        }else {
+             setContentView(R.layout.activity_list);
+             findViewById(R.id.notification).setOnClickListener(click -> {
+                 String title = "Titre de la notification";
+                 String message = "Message de la notification";
+                 sendNotificationOnChannel(this, this, title, message, REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT);
+             });
 
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            Report report = (Report) adapter.getItem(position);
-            showStatusDialog(report, adapter);
-        });
+             ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
+
+             ListView listView = findViewById(R.id.liste_signalement);
+             listView.setAdapter(adapter);
+
+             listView.setOnItemClickListener((parent, view, position, id) -> {
+                 Report report = (Report) adapter.getItem(position);
+                 showStatusDialog(report, adapter);
+             });
+         }
+
+
     }
 
     private void showStatusDialog(Report report, ReportAdapter adapter) {
@@ -66,6 +78,19 @@ public class ListActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    private boolean isLandcape(){
+        Display display = getWindowManager().getDefaultDisplay();
+        int width = display.getWidth();
+        int height = display.getHeight();
+        if(width < height){
+            return false  ;
+        } else {
+            return true ;
+        }
+    }
+
+
 
 
 }

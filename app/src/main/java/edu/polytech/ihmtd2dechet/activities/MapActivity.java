@@ -39,14 +39,10 @@ public class MapActivity extends AppCompatActivity  {
             startActivity(intent);
 
             finish();
-        }
-        else if (isLandcape()){
-            Intent intent = new Intent(this, LandscapeActivity.class);
-            startActivity(intent);
-
-            finish();
 
         }
+
+
 
 
         else {
@@ -58,6 +54,11 @@ public class MapActivity extends AppCompatActivity  {
 
 
     }
+
+
+
+
+
     @Override
     public void onPause(){
         super.onPause();
@@ -69,6 +70,8 @@ public class MapActivity extends AppCompatActivity  {
         super.onResume();
         map.onResume();
     }
+
+
 
     private void includeMap() {
         Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
@@ -110,16 +113,9 @@ public class MapActivity extends AppCompatActivity  {
         return screenSize >= 700;
     }
 
-    private boolean isLandcape(){
-        Display display = getWindowManager().getDefaultDisplay();
-        int width = display.getWidth();
-        int height = display.getHeight();
-        if(width < height){
-            return false  ;
-        } else {
-            return true ;
-        }
-    }
+
+
+
 
 
 

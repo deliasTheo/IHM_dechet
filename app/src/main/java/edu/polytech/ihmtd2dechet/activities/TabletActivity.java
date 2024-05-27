@@ -1,5 +1,6 @@
 package edu.polytech.ihmtd2dechet.activities;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 import edu.polytech.ihmtd2dechet.R;
 import edu.polytech.ihmtd2dechet.adapter.ReportAdapter;
+import edu.polytech.ihmtd2dechet.objects.Report;
 import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
 public class TabletActivity extends AppCompatActivity {
@@ -33,6 +35,10 @@ public class TabletActivity extends AppCompatActivity {
         ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
         ListView listView = findViewById(R.id.liste_signalement);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            Report report = (Report) adapter.getItem(position);
+            showStatusDialog(report, adapter);
+        });
         includeMap();
     }
 
@@ -65,6 +71,30 @@ public class TabletActivity extends AppCompatActivity {
 
         mOverlay.setFocusItemsOnTap(true);
         map.getOverlays().add(mOverlay);
+    }
+
+    private void showStatusDialog(Report report, ReportAdapter adapter) {
+        String[] statuses = {"A faire", "En cours", "Finis"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choisissez le statut")
+                .setItems(statuses, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            report.setAdvancement("A faire");
+                            break;
+                        case 1:
+                            report.setAdvancement("En cours");
+                            break;
+                        case 2:
+                            report.setAdvancement("Finis");
+                            break;
+                    }
+                    adapter.notifyDataSetChanged();
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 
