@@ -8,7 +8,7 @@
     tools:context=".activities.OneEventActivity">
 
     <TextView
-        android:id="@+id/titre_page_one_event"
+        android:id="@+id/title_page_one_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -32,18 +32,17 @@
         android:paddingRight="15dp"
         android:gravity="clip_horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titre_page_one_event" />
+        app:layout_constraintTop_toBottomOf="@+id/title_page_one_event" />
 
     <ImageView
-        android:id="@+id/image_evenement"
+        android:id="@+id/image_one_event"
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginTop="35dp"
         android:layout_marginRight="20dp"
         android:background="@color/extraLightGreen"
-        android:src="@drawable/logo_events"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titre_page_one_event"></ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/title_page_one_event"></ImageView>
 
     <TextView
         android:id="@+id/one_event_date"
@@ -57,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@id/one_event_description" />
 
     <TextView
-        android:id="@+id/one_event_lieu"
+        android:id="@+id/one_event_location"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -68,17 +67,53 @@
         app:layout_constraintTop_toBottomOf="@id/one_event_date" />
 
     <Button
-        android:id="@+id/bouton_importer"
-        android:layout_width="150dp"
+        android:id="@+id/bouton_Modifier"
+        android:layout_width="120dp"
         android:layout_height="60dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="150dp"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginLeft="10dp"
+
+        android:text="Modifier"
+
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+    </Button>
+
+    <Button
+        android:id="@+id/bouton_Supprimer"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="150dp"
+        android:backgroundTint="#4CAF50"
+
+        android:text="Supprimer"
+
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+    </Button>
+
+    <Button
+        android:id="@+id/bouton_importer"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="150dp"
         android:backgroundTint="#4CAF50"
 
         android:text="Importer"
 
         android:textColor="@color/black"
-        android:textSize="25dp"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,8 +124,7 @@
         android:id="@+id/bouton_retour"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="50dp"
         android:backgroundTint="#4CAF50"
 
         android:text="Retour"
@@ -101,6 +135,7 @@
 
 
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
     </Button>
 
