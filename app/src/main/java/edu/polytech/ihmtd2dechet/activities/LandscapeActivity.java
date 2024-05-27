@@ -1,15 +1,13 @@
 package edu.polytech.ihmtd2dechet.activities;
 
-import static com.google.android.gms.common.util.DeviceProperties.isTablet;
+
+
+import android.os.Bundle;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -22,52 +20,22 @@ import org.osmdroid.views.overlay.OverlayItem;
 import java.util.ArrayList;
 
 import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.adapter.ReportAdapter;
 import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
-public class MapActivity extends AppCompatActivity  {
+public class LandscapeActivity  extends AppCompatActivity {
 
-    private static final ReportsList wasteList = ReportsList.getInstance();
 
     private MapView map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (isTablet()) {
-
-            Intent intent = new Intent(this, TabletActivity.class);
-            startActivity(intent);
-
-            finish();
-        }
-        else if (isLandcape()){
-            Intent intent = new Intent(this, LandscapeActivity.class);
-            startActivity(intent);
-
-            finish();
-
-        }
-
-
-        else {
-
-            setContentView(R.layout.activity_map);
-            includeMap();
-        }
-
-
-
-    }
-    @Override
-    public void onPause(){
-        super.onPause();
-        map.onPause();
-
-    }
-    @Override
-    public void onResume(){
-        super.onResume();
-        map.onResume();
+        setContentView(R.layout.activity_landscape_list);
+        ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
+        ListView listView = findViewById(R.id.liste_signalement);
+        listView.setAdapter(adapter);
+        includeMap();
     }
 
     private void includeMap() {
@@ -101,26 +69,13 @@ public class MapActivity extends AppCompatActivity  {
         map.getOverlays().add(mOverlay);
     }
 
-    private boolean isTablet() {
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        float screenWidthInDp = displayMetrics.widthPixels / displayMetrics.density;
-        float screenHeightInDp = displayMetrics.heightPixels / displayMetrics.density;
-        float screenSize = Math.min(screenWidthInDp, screenHeightInDp);
-
-        return screenSize >= 700;
-    }
-
-    private boolean isLandcape(){
-        Display display = getWindowManager().getDefaultDisplay();
-        int width = display.getWidth();
-        int height = display.getHeight();
-        if(width < height){
-            return false  ;
-        } else {
-            return true ;
-        }
-    }
-
 
 
 }
+
+
+
+
+
+
+
