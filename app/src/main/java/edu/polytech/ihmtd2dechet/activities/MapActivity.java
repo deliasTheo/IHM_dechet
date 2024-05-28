@@ -38,27 +38,12 @@ public class MapActivity extends AppCompatActivity  {
             startActivity(intent);
 
             finish();
-<<<<<<< HEAD
 
-        }
-
-
-
-
-        else {
-
-            setContentView(R.layout.activity_map);
-            includeMap();
-        }
-
-
-
-=======
         } else {
             setContentView(R.layout.activity_map);
             includeMap();
         }
->>>>>>> 952f1b5b0763c27bb978105ad4e0d279e3b0fb19
+
     }
 
 

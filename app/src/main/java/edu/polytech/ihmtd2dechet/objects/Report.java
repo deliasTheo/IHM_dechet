@@ -8,7 +8,9 @@ public class Report {
     private final String description;
 
 
+
     private  String advancement ;
+
 
     private final GeoPoint location;
     private final int image;
