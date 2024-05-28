@@ -55,7 +55,9 @@ public class CreateEventActivity extends AppCompatActivity {
                 databaseReference.push().setValue(newEvent).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(getApplicationContext(), "Événement créé avec succès", Toast.LENGTH_SHORT).show();
-                        NotificationApplication.sendNotification(getApplicationContext(), this, new Notification(NotificationApplication.EVENT_CHANNEL, NotificationCompat.PRIORITY_DEFAULT, R.drawable.logo_events, value_title, value_description + "\n\nOrganisé le " + value_date + " à " + value_lieu));
+
+                        NotificationApplication.sendNotification(getApplicationContext(), this, new Notification(NotificationApplication.EVENT_CHANNEL, NotificationCompat.PRIORITY_DEFAULT, R.drawable.logo_events, "Nouvel évènement ajouté", value_title + "\n\n" + value_description + "\n\n" + value_date + ", " + value_lieu + "."));
+
                         Intent intent = new Intent(getApplicationContext(), EventsActivity.class);
                         startActivity(intent);
                     } else {
