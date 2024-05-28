@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,35 +25,41 @@ import java.util.ArrayList;
 
 import edu.polytech.ihmtd2dechet.R;
 import edu.polytech.ihmtd2dechet.adapter.EventAdapter;
+import edu.polytech.ihmtd2dechet.objects.ControllerEvent;
 import edu.polytech.ihmtd2dechet.objects.Event;
+import edu.polytech.ihmtd2dechet.objects.EventListModel;
+import edu.polytech.ihmtd2dechet.objects.EventView;
 
 public class EventsActivity extends AppCompatActivity {
 
     private static final String TAG = "EventsActivity";
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
+    //private FirebaseDatabase firebaseDatabase;
+   // private DatabaseReference databaseReference;
     private ListView listView;
-    private ArrayList<Event> listEvent;
-    private EventAdapter adapter;
+    //private ArrayList<Event> listEvent;
+    //private EventAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
+        onViewCreated( findViewById(R.id.view_event) );
 
         listView = findViewById(R.id.list_events);
-        listEvent = new ArrayList<>();
-        adapter = new EventAdapter(this, listEvent);
-        listView.setAdapter(adapter);
+        //listEvent = new ArrayList<>();
+        //listView.setAdapter(adapter);
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("Event");
+        //firebaseDatabase = FirebaseDatabase.getInstance();
+        //databaseReference = firebaseDatabase.getReference().child("Event");
 
         // Récupérer les données depuis Firebase
-        getEventData();
+        //getEventData();
 
         // Avant de démarrer OneEventActivity
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ///
+        // adapter = new EventAdapter(this, listEvent);
+
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Obtenir l'élément sélectionné à partir de l'adaptateur
@@ -65,7 +72,7 @@ public class EventsActivity extends AppCompatActivity {
                 // Démarrer OneEventActivity
                 startActivity(intent);
             }
-        });
+        });*/
 
         Button createEventButton = findViewById(R.id.button_create_event);
         createEventButton.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +85,7 @@ public class EventsActivity extends AppCompatActivity {
             }
         });
     }
-
+    /*
     private void getEventData() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -97,5 +104,17 @@ public class EventsActivity extends AppCompatActivity {
                 Toast.makeText(EventsActivity.this, "Error fetching data", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+*/
+    public <T extends ViewGroup> void onViewCreated(T layout){
+        EventView view = new EventView(layout); // todo
+        EventListModel model = new EventListModel();    //controller not still created so the controller reference will be sent later
+        model.addObserver(view);    //MODEL is observable from VIEW
+        ControllerEvent controller = new ControllerEvent( view, model );
+        EventAdapter adapter = new EventAdapter(getApplicationContext(), controller, model, view);
+        model.populate(getApplicationContext(), adapter);
+        view.setAdapter(adapter);
+        model.setController(controller);    //sent for principe but in this exercice, MODEL doesn't need controller
+        view.setController( controller );
     }
 }

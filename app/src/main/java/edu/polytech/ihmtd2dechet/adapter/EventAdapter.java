@@ -10,31 +10,36 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import edu.polytech.ihmtd2dechet.objects.ControllerEvent;
 import edu.polytech.ihmtd2dechet.objects.Event;
 import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.objects.EventListModel;
+import edu.polytech.ihmtd2dechet.objects.EventView;
 
 public class EventAdapter extends BaseAdapter {
 
-    private ArrayList<Event> events;
     private LayoutInflater inflater;
+    private final EventListModel model;
+    private final EventView view;
+    private final ControllerEvent controller;
 
-    private Context context;
-
-    public EventAdapter(Context context, ArrayList<Event> events) {
-        this.context = context;
-        this.events = events;
+    public EventAdapter(Context context, ControllerEvent controller, EventListModel model, EventView view) {
+        this.model = model;
+        this.view = view;
+        this.controller = controller;
         this.inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return events.size();
+        return model.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return events.get(position);
+        return model.get(position);
     }
+    // controller.
 
     @Override
     public long getItemId(int position) {
@@ -52,11 +57,12 @@ public class EventAdapter extends BaseAdapter {
             holder.date = convertView.findViewById(R.id.date_layout_event);
             holder.image = convertView.findViewById(R.id.image_layout_event);
             convertView.setTag(holder);
+            View finalConvertView = convertView;
+            convertView.setOnClickListener(clic ->  controller.userActionDisplayEvent(this, position, finalConvertView.getContext()) );
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
-        Event event = events.get(position);
+        Event event = model.get(position);
         holder.title.setText(event.getTitle());
         holder.location.setText(event.getLocation());
         holder.date.setText(event.getDate());
