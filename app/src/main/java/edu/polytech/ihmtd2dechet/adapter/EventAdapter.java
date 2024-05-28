@@ -17,12 +17,13 @@ public class EventAdapter extends BaseAdapter {
 
     private ArrayList<Event> events;
     private LayoutInflater inflater;
+
     private Context context;
 
-    public EventAdapter(Context context, ArrayList<Event> events, LayoutInflater inflater) {
+    public EventAdapter(Context context, ArrayList<Event> events) {
         this.context = context;
         this.events = events;
-        this.inflater = inflater;
+        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -42,17 +43,37 @@ public class EventAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = inflater.inflate(R.layout.layout_event, null);
-        TextView title = view.findViewById(R.id.title_layout_event);
-        TextView location = view.findViewById(R.id.location_layout_event);
-        TextView date = view.findViewById(R.id.date_layout_event);
-        ImageView image = view.findViewById(R.id.image_layout_event);
+        ViewHolder holder;
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.layout_event, parent, false);
+            holder = new ViewHolder();
+            holder.title = convertView.findViewById(R.id.title_layout_event);
+            holder.location = convertView.findViewById(R.id.location_layout_event);
+            holder.date = convertView.findViewById(R.id.date_layout_event);
+            holder.image = convertView.findViewById(R.id.image_layout_event);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
 
-        title.setText(events.get(position).getTitle());
-        location.setText(events.get(position).getLocation());
-        date.setText(events.get(position).getDate());
-        image.setImageResource(events.get(position).getImage());
+        Event event = events.get(position);
+        holder.title.setText(event.getTitle());
+        holder.location.setText(event.getLocation());
+        holder.date.setText(event.getDate());
 
-        return view;
+        // Assuming the image is a drawable resource ID
+        holder.image.setImageResource(event.getImage());
+
+        // If the image is a URL, you could use Glide or Picasso
+        // Glide.with(context).load(event.getImage()).into(holder.image);
+
+        return convertView;
+    }
+
+    static class ViewHolder {
+        TextView title;
+        TextView location;
+        TextView date;
+        ImageView image;
     }
 }
