@@ -32,6 +32,8 @@ public class LandscapeActivity  extends AppCompatActivity {
 
     private MapView map;
 
+    MapActivity mapActivity = new MapActivity();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +102,6 @@ public class LandscapeActivity  extends AppCompatActivity {
 
     private void showStatusDialog(Report report, ReportAdapter adapter) {
         String[] statuses = {"A faire", "En cours", "Finis"};
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choisissez le statut")
                 .setItems(statuses, (dialog, which) -> {

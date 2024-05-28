@@ -9,6 +9,7 @@ public class Guide {
         this.ouComment = comment;
     }
 
+
     public String getType() {
         return type;
     }
