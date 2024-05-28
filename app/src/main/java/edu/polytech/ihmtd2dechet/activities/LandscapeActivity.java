@@ -1,7 +1,11 @@
 package edu.polytech.ihmtd2dechet.activities;
 
+
+
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,23 +27,34 @@ import edu.polytech.ihmtd2dechet.adapter.ReportAdapter;
 import edu.polytech.ihmtd2dechet.objects.Report;
 import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
-public class TabletActivity extends AppCompatActivity {
+public class LandscapeActivity  extends AppCompatActivity {
+
 
     private MapView map;
 
+    MapActivity mapActivity = new MapActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tablet_list);
-        ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
-        ListView listView = findViewById(R.id.liste_signalement);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            Report report = (Report) adapter.getItem(position);
-            showStatusDialog(report, adapter);
-        });
-        includeMap();
+        if(isLandcape()) {
+            setContentView(R.layout.activity_landscape_list);
+            ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
+            ListView listView = findViewById(R.id.liste_signalement);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener((parent, view, position, id) -> {
+                Report report = (Report) adapter.getItem(position);
+                showStatusDialog(report, adapter);
+            });
+            includeMap();
+        }else {
+            Intent intent = new Intent(this, ListActivity.class);
+            startActivity(intent);
+
+            finish();
+
+        }
+
     }
 
     private void includeMap() {
@@ -73,9 +88,20 @@ public class TabletActivity extends AppCompatActivity {
         map.getOverlays().add(mOverlay);
     }
 
+
+    private boolean isLandcape(){
+        Display display = getWindowManager().getDefaultDisplay();
+        int width = display.getWidth();
+        int height = display.getHeight();
+        if(width < height){
+            return false  ;
+        } else {
+            return true ;
+        }
+    }
+
     private void showStatusDialog(Report report, ReportAdapter adapter) {
         String[] statuses = {"A faire", "En cours", "Finis"};
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choisissez le statut")
                 .setItems(statuses, (dialog, which) -> {
@@ -100,3 +126,10 @@ public class TabletActivity extends AppCompatActivity {
 
 
 }
+
+
+
+
+
+
+

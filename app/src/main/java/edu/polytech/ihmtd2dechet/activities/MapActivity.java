@@ -9,7 +9,7 @@ import androidx.preference.PreferenceManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-
+import android.view.Display;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -38,11 +38,18 @@ public class MapActivity extends AppCompatActivity  {
             startActivity(intent);
 
             finish();
+
         } else {
             setContentView(R.layout.activity_map);
             includeMap();
         }
+
     }
+
+
+
+
+
     @Override
     public void onPause(){
         super.onPause();
@@ -54,6 +61,8 @@ public class MapActivity extends AppCompatActivity  {
         super.onResume();
         map.onResume();
     }
+
+
 
     private void includeMap() {
         Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
@@ -96,6 +105,11 @@ public class MapActivity extends AppCompatActivity  {
 
         return screenSize >= 700;
     }
+
+
+
+
+
 
 
 }
