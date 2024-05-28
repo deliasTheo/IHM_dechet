@@ -4,18 +4,22 @@ import org.osmdroid.util.GeoPoint;
 
 public class Report {
 
-    private final String title;
+    private  String title;
     private final String description;
 
-    private final Avancement advancement ;
+
+
+    private  String advancement ;
+
+
     private final GeoPoint location;
     private final int image;
 
 
-    public Report(String title, String description, Avancement advancement, GeoPoint location, int image) {
+    public Report(String title, String description, String advancement, GeoPoint location, int image) {
         this.title = title;
         this.description = description;
-        this.advancement = advancement ;
+        this.advancement = "A faire";
         this.location = location;
         this.image = image;
     }
@@ -26,7 +30,7 @@ public class Report {
     }
 
 
-    public Avancement getAdvancement() {
+    public String getAdvancement() {
         return advancement;
     }
 
@@ -44,5 +48,13 @@ public class Report {
     public GeoPoint getLocation() {
         return this.location;
     }
+
+
+    public void setAdvancement(String advancement){
+        this.advancement = advancement;
+    }
+
+
+
 
 }
