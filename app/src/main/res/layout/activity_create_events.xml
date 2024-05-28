@@ -64,7 +64,7 @@
         android:layout_marginTop="35dp"
         android:background="#CAC8C8"
         android:paddingLeft="15dp"
-        android:hint="Date de l'évènement"
+        android:hint="Date : JJ/MM/AAAA HH:mm"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

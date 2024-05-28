@@ -44,4 +44,7 @@ public class MenuFragment extends Fragment {
         Intent intent = new Intent(getContext(), activityClass);
         startActivity(intent);
     }
+
+
+
 }

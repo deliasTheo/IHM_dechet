@@ -19,13 +19,6 @@ import edu.polytech.ihmtd2dechet.objects.Notification;
 
 public class NotificationActivity extends AppCompatActivity {
 
-    private static final List<Notification> notifications = new ArrayList<>(
-            Arrays.asList(
-                    new Notification(REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT, R.drawable.logo_dechets, "Uranium sur la voie publique", "Un bout d'uranium a été trouvé sur la voie publique !")
-            )
-    );
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +26,10 @@ public class NotificationActivity extends AppCompatActivity {
 
         findViewById(R.id.notification).setOnClickListener(click -> {
             Notification notification = new Notification(REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT, R.drawable.logo_dechets, "Titre de la notification", "Message de la notification");
-            notifications.add(notification);
             NotificationApplication.sendNotification(this, this, notification);
         });
 
-        NotificationAdapter adapter = new NotificationAdapter(notifications, getLayoutInflater(), getApplicationContext());
+        NotificationAdapter adapter = new NotificationAdapter(NotificationApplication.getNotificationList(), getLayoutInflater(), getApplicationContext());
         ListView listView = findViewById(R.id.notification_list);
         listView.setAdapter(adapter);
     }
