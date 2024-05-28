@@ -88,9 +88,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="80dp"
         android:backgroundTint="#4CAF50"
-
         android:text="Signaler"
-
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"

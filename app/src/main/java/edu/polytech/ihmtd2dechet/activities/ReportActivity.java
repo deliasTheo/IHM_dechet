@@ -1,9 +1,15 @@
 package edu.polytech.ihmtd2dechet.activities;
 
+import android.Manifest;
+import android.content.ContentValues;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,17 +17,31 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
+
+import org.osmdroid.util.GeoPoint;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import edu.polytech.ihmtd2dechet.R;
 import edu.polytech.ihmtd2dechet.interfaces.PictureInterface;
 import edu.polytech.ihmtd2dechet.fragments.PictureFragment;
+import edu.polytech.ihmtd2dechet.interfaces.StorageInterface;
+import edu.polytech.ihmtd2dechet.objects.Report;
+import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
 public class ReportActivity extends AppCompatActivity {
 
     private Bitmap picture;
     private PictureFragment pictureFragment;
     Bitmap imageBitmap = null;
+    private String directory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +98,10 @@ public class ReportActivity extends AppCompatActivity {
             String value_type = wasteType.getText()+"";
             if(value_description.length() != 0 && value_position.length() != 0 && value_type.length() != 0 && imageBitmap != null)
             {
+                //ContextWrapper contextWrapper = new ContextWrapper(getContext());
+                directory = getDir("imageDir", ContextWrapper.MODE_PRIVATE).getPath();
+                saveToInternalStorage(imageBitmap);
+                ReportsList.getInstance().add(new Report("null", value_description, null, new GeoPoint(43.7, 7.005), R.drawable.dechet));
                 Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                 startActivity(intent);
             }
@@ -101,6 +125,29 @@ public class ReportActivity extends AppCompatActivity {
         if (requestCode == PictureInterface.REQUEST_CAMERA && resultCode == -1) {
             imageBitmap = (Bitmap) data.getExtras().get("data");
             pictureFragment.setImage(imageBitmap);
+        }
+    }
+
+    public void saveToInternalStorage(Bitmap picture) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions( this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, StorageInterface.REQUEST_MEDIA_READ);
+        } else { //permission is still granted
+            SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+            String name = formater.format(new Date());
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/*");
+            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
+            contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+            getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+            File file = new File(Environment.DIRECTORY_PICTURES, name);
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(file);
+                picture.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

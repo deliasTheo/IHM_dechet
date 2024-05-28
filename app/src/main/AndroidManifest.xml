@@ -32,9 +32,6 @@
             android:name=".activities.TabletActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.OneEventActivity"
             android:exported="false" />
         <activity
