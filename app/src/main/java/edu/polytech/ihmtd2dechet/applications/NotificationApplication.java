@@ -46,9 +46,8 @@ public class NotificationApplication extends Application {
                     new Notification(REPORTING_CHANNEL, NotificationCompat.PRIORITY_MAX, R.drawable.logo_dechets,"Nouveau déchet toxique signalé", "Tôle en amiante trouvé sur le bords de la route.\n\n Déchet toxique, 89 Chemin de l'amiante."),
                     new Notification(EVENT_CHANNEL, NotificationCompat.PRIORITY_DEFAULT, R.drawable.logo_events,"Nouvel évènement ajouté", "Marche pour le climat.\n\n Et oui vous ne rêvez pas ! La marche du climat fait son grand retour !\n\n 26/07/2189, 188 rue de la chaussure."),
                     new Notification(EVENT_CHANNEL, NotificationCompat.PRIORITY_DEFAULT, R.drawable.logo_events,"Nouvel évènement ajouté", "Clean walk.\n\n Tout est dans le titre.\n\n 16/05/2024, Place de la mairie."),
-                    new Notification(REPORTING_CHANNEL, NotificationCompat.PRIORITY_MAX, R.drawable.logo_dechets,"Nouveau déchet toxique signalé", "Morceau d'uranium dans le centre ville.\n\n Déchet toxique, 89 Avenue de l'uranium."),
-                    new Notification(REPORTING_CHANNEL, NotificationCompat.PRIORITY_HIGH, R.drawable.logo_dechets,"Nouveau déchet encombrant signalé", "Une épave de camion abandonné au milieu de la place.\n\n Encombrant, Place du camion abandonné."),
-                    new Notification(EVENT_CHANNEL, NotificationCompat.PRIORITY_DEFAULT, R.drawable.logo_events,"Nouvel évènement ajouté", "Collecte d'objets.\n\nCe mardi, une collecte d'objetest mise en place afin de leur offrir une nouvelle vie !\n\n 08/11/2032, Rue des objets d'occasion.")
+                    new Notification(REPORTING_CHANNEL, NotificationCompat.PRIORITY_HIGH, R.drawable.logo_dechets,"Nouveau déchet encombrant signalé", "Un canapé abandonné au milieu de la place.\n\n Encombrant, Place du Moulin."),
+                    new Notification(EVENT_CHANNEL, NotificationCompat.PRIORITY_DEFAULT, R.drawable.logo_events,"Nouvel évènement ajouté", "Collecte d'objets.\n\nCe mardi, une collecte d'objet est mise en place afin de leur offrir une nouvelle vie !\n\n 08/11/2032, Rue des objets d'occasion.")
             )
     );
 

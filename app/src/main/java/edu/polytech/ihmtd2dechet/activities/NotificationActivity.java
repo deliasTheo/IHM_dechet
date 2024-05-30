@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import edu.polytech.ihmtd2dechet.R;
@@ -22,11 +23,14 @@ import edu.polytech.ihmtd2dechet.applications.NotificationApplication;
 import edu.polytech.ihmtd2dechet.objects.Guide;
 import edu.polytech.ihmtd2dechet.objects.GuideFactory;
 import edu.polytech.ihmtd2dechet.objects.Notification;
+import edu.polytech.ihmtd2dechet.objects.Report;
 
 public class NotificationActivity extends AppCompatActivity {
 
     NotificationAdapter adapter;
     ListView listView;
+
+    NotificationApplication.Filter filter = NotificationApplication.Filter.ALL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +50,6 @@ public class NotificationActivity extends AppCompatActivity {
             builder.setItems(items, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    NotificationApplication.Filter filter;
                     switch (which) {
                         case 1:
                             filter = NotificationApplication.Filter.EVENT_CHANNEL;
@@ -64,10 +67,32 @@ public class NotificationActivity extends AppCompatActivity {
             builder.show();
         });
 
+        this.listView.setOnItemClickListener((parent, view, position, id) -> {
+            AlertDialog alertDialog = new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Voulez-vous vraiment retirer cette notification de la liste ?")
+                    .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            NotificationApplication.removeNotificationFromList((Notification) (adapter.getItem(position)));
+                            adapter = new NotificationAdapter(NotificationApplication.getNotificationList(filter), getLayoutInflater(), getApplicationContext());
+                            listView.setAdapter(adapter);
+                        }
+                    })
+                    .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    })
+                    .show();
+        });
 
-        findViewById(R.id.notification).setOnClickListener(click -> {
-            Notification notification = new Notification(REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT, R.drawable.logo_dechets, "Titre de la notification", "Message de la notification");
-            NotificationApplication.sendNotification(this, this, notification);
+
+        findViewById(R.id.sort).setOnClickListener(click -> {
+            List<Notification> notificationList = NotificationApplication.getNotificationList(this.filter);
+            notificationList.sort(Comparator.comparingInt(Notification::getPriority));
+            this.adapter = new NotificationAdapter(notificationList, getLayoutInflater(), getApplicationContext());
+            this.listView.setAdapter(adapter);
         });
     }
 
