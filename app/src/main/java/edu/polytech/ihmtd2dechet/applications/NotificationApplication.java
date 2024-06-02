@@ -81,7 +81,8 @@ public class NotificationApplication extends Application {
                 .setPriority(notification.getPriority())
                 .setSmallIcon(notification.getSmallIcon())
                 .setContentTitle(notification.getTitle())
-                .setContentText(notification.getText());
+                .setContentText(notification.getText())
+                .setTimeoutAfter(90000);
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, new String[] {Manifest.permission.POST_NOTIFICATIONS}, NOTIFICATION_REQUEST_CODE);
