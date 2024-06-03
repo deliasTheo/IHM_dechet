@@ -1,6 +1,7 @@
 package edu.polytech.ihmtd2dechet.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,31 +11,36 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import edu.polytech.ihmtd2dechet.objects.ControllerEvent;
 import edu.polytech.ihmtd2dechet.objects.Event;
 import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.objects.EventListModel;
+import edu.polytech.ihmtd2dechet.objects.EventView;
 
 public class EventAdapter extends BaseAdapter {
 
-    private ArrayList<Event> events;
     private LayoutInflater inflater;
+    private final EventListModel model;
+    private final EventView view;
+    private final ControllerEvent controller;
 
-    private Context context;
-
-    public EventAdapter(Context context, ArrayList<Event> events) {
-        this.context = context;
-        this.events = events;
+    public EventAdapter(Context context, ControllerEvent controller, EventListModel model, EventView view) {
+        this.model = model;
+        this.view = view;
+        this.controller = controller;
         this.inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return events.size();
+        return model.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return events.get(position);
+        return model.get(position);
     }
+    // controller.
 
     @Override
     public long getItemId(int position) {
@@ -56,16 +62,11 @@ public class EventAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Event event = events.get(position);
+        Event event = model.get(position);
         holder.title.setText(event.getTitle());
         holder.location.setText(event.getLocation());
         holder.date.setText(event.getDate());
-
-        // Assuming the image is a drawable resource ID
         holder.image.setImageResource(event.getImage());
-
-        // If the image is a URL, you could use Glide or Picasso
-        // Glide.with(context).load(event.getImage()).into(holder.image);
 
         return convertView;
     }

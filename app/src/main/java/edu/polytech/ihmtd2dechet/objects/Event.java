@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Observable;
 import java.util.UUID;
 
 import edu.polytech.ihmtd2dechet.R;
@@ -22,9 +23,11 @@ public class Event implements Parcelable {
     private String start_time;
     private String end_time;
 
+
     public Event() {
         // Constructeur par défaut requis pour les appels à DataSnapshot.getValue(Event.class)
     }
+
 
     public Event(String title, String description, String date, String location, String start_time, String end_time) {
         this.uid = UUID.randomUUID().toString();
