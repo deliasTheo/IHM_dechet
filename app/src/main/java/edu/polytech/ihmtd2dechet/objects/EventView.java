@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,16 +22,14 @@ public class EventView implements Observer {
     private ControllerEvent controller;
     private final ViewGroup layout;
 
+
     public EventView(ViewGroup layout) {
         this.layout = layout;
-        //layout.findViewById(R.id.list_events).setOnClickListener(click -> controller.userActionDisplayEvent(adapter, adapter.getItem(position)));
-
-        // action listView.setOnItemClickListener
-        // action createEventButton.setOnClickListener
     }
 
     @Override
     public void update(Observable observable, Object o) {
+
         adapter.notifyDataSetChanged();
     }
 

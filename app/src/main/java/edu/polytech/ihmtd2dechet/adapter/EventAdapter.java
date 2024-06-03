@@ -1,6 +1,7 @@
 package edu.polytech.ihmtd2dechet.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,21 +58,15 @@ public class EventAdapter extends BaseAdapter {
             holder.date = convertView.findViewById(R.id.date_layout_event);
             holder.image = convertView.findViewById(R.id.image_layout_event);
             convertView.setTag(holder);
-            View finalConvertView = convertView;
-            convertView.setOnClickListener(clic ->  controller.userActionDisplayEvent(this, position, finalConvertView.getContext()) );
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+
         Event event = model.get(position);
         holder.title.setText(event.getTitle());
         holder.location.setText(event.getLocation());
         holder.date.setText(event.getDate());
-
-        // Assuming the image is a drawable resource ID
         holder.image.setImageResource(event.getImage());
-
-        // If the image is a URL, you could use Glide or Picasso
-        // Glide.with(context).load(event.getImage()).into(holder.image);
 
         return convertView;
     }
