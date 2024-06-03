@@ -1,6 +1,8 @@
 package edu.polytech.ihmtd2dechet.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,19 +50,37 @@ public class ReportAdapter extends BaseAdapter {
 
         Report report = reports.get(position);
 
-        TextView title = convertView.findViewById(R.id.titre_layout_signalement);
-        title.setText(report.getTitle() + " (" + report.getAdvancement() + ")");
-
         TextView description = convertView.findViewById(R.id.description_layout_signalement);
         description.setText(report.getDescription());
 
+        TextView type = convertView.findViewById(R.id.type_layout_signalement);
+        type.setText(report.getType());
+
+        TextView avancement = convertView.findViewById(R.id.avancement_layout_signalement);
+        avancement.setText("statut : " + report.getAdvancement());
+
         ImageView image = convertView.findViewById(R.id.image_layout_signalement);
-        image.setImageResource(report.getImage());
+        if (report.getImage() == -1) {
+            displayReportImage(image, report);
+        } else {
+            image.setImageResource(report.getImage());
+        }
 
         TextView location = convertView.findViewById(R.id.lieu_layout_signalement);
         location.setText(report.getLocation().toString());
 
         return convertView;
+    }
+
+    public void displayReportImage(ImageView imageView, Report report) {
+        String imagePath = report.getImagePath();
+        Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+        if (bitmap != null) {
+            imageView.setImageBitmap(bitmap);
+        } else {
+            // Gestion du cas où le bitmap est null
+            imageView.setImageResource(R.drawable.dechet); // Placeholder par défaut
+        }
     }
 
     public void updateReportAdvancement(int position, String newAdvancement) {

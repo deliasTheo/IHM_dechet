@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+>
 
     <ImageView
         android:id="@+id/EventsIcon"
@@ -11,8 +12,9 @@
         android:layout_weight="1"
         android:background="@color/extraLightGreen"
         android:src="@drawable/logo_events"
-        android:padding="13dp"
-        />
+        android:padding="5dp"
+    />
+
 
     <ImageView
         android:id="@+id/chartIcon"
@@ -21,8 +23,9 @@
         android:layout_weight="1"
         android:background="@color/extraLightGreen"
         android:src="@drawable/logo_chart"
-        android:padding="12dp"
-        />
+        android:padding="5dp"
+    />
+
 
     <ImageView
         android:id="@+id/mapPin"
@@ -31,8 +34,8 @@
         android:layout_weight="1"
         android:background="@color/extraLightGreen"
         android:src="@drawable/logo_map"
-        android:padding="12dp"
-        />
+        android:padding="5dp"
+    />
 
     <ImageView
         android:id="@+id/guideIcon"
@@ -41,6 +44,17 @@
         android:layout_weight="1"
         android:background="@color/extraLightGreen"
         android:src="@drawable/logo_info"
-        android:padding="12dp"
-        />
+        android:padding="5dp"
+    />
+
+    <ImageView
+        android:id="@+id/notificationIcon"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@color/extraLightGreen"
+        android:src="@drawable/logo_notification"
+        android:padding="5dp"
+    />
+
 </LinearLayout>

@@ -20,6 +20,8 @@ public class Event implements Parcelable {
     private String date;
     private String location;
     private int image;
+    private String start_time;
+    private String end_time;
 
 
     public Event() {
@@ -27,13 +29,15 @@ public class Event implements Parcelable {
     }
 
 
-    public Event(String title, String description, String date, String location) {
+    public Event(String title, String description, String date, String location, String start_time, String end_time) {
         this.uid = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.date = date;
         this.location = location;
         this.image = R.drawable.greenwalk;
+        this.start_time = start_time;
+        this.end_time = end_time;
     }
 
     protected Event(Parcel in) {
@@ -43,6 +47,8 @@ public class Event implements Parcelable {
         date = in.readString();
         location = in.readString();
         image = in.readInt();
+        start_time = in.readString();
+        end_time = in.readString();
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -81,6 +87,14 @@ public class Event implements Parcelable {
         return image;
     }
 
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public String getEnd_time() {
+        return end_time;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -94,10 +108,13 @@ public class Event implements Parcelable {
         dest.writeString(date);
         dest.writeString(location);
         dest.writeInt(image);
+        dest.writeString(start_time);
+        dest.writeString(end_time);
     }
 
     public static void deleteEvent(String uid) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Event").child(uid);
         databaseReference.removeValue();
     }
+
 }

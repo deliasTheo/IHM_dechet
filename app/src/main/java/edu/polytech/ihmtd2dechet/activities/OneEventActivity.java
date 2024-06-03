@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
+import java.util.TimeZone;
 
 import edu.polytech.ihmtd2dechet.R;
 import edu.polytech.ihmtd2dechet.objects.Event;
@@ -47,6 +51,8 @@ public class OneEventActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.one_event_date)).setText(event.getDate());
         ((TextView)findViewById(R.id.one_event_location)).setText(event.getLocation());
         ((ImageView)findViewById(R.id.image_one_event)).setImageResource(event.getImage());
+        ((TextView)findViewById(R.id.one_event_start_time)).setText(event.getStart_time());
+        ((TextView)findViewById(R.id.one_event_end_time)).setText(event.getEnd_time());
 
         // Définir un OnClickListener pour le bouton de retour
         ((Button)findViewById(R.id.bouton_retour)).setOnClickListener(click -> {
@@ -67,6 +73,11 @@ public class OneEventActivity extends AppCompatActivity {
             });
             builder.show(); // Afficher la boîte de dialogue
         });
+
+        ((Button)findViewById(R.id.bouton_importer)).setOnClickListener(click -> {
+            // Appeler la méthode pour importer l'événement dans le calendrier
+            importEventToCalendar(event);
+        });
     }
 
     private void deleteEvent() {
@@ -82,5 +93,36 @@ public class OneEventActivity extends AppCompatActivity {
                 Toast.makeText(this, "Erreur: La suppression a échoué", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void importEventToCalendar(Event event) {
+        // Créer un Intent pour ajouter un événement au calendrier
+        Intent intent = new Intent(Intent.ACTION_INSERT)
+                .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.Events.TITLE, event.getTitle())
+                .putExtra(CalendarContract.Events.DESCRIPTION, event.getDescription())
+                .putExtra(CalendarContract.Events.EVENT_LOCATION, event.getLocation())
+                .putExtra(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().getID())
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, getDateTimeInMillis(event.getDate(), event.getStart_time()))
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, getDateTimeInMillis(event.getDate(), event.getEnd_time()));
+
+        // Lancer l'activité pour ajouter un événement au calendrier
+        startActivity(intent);
+    }
+
+    private long getDateTimeInMillis(String date, String time) {
+        // Parsez la date et l'heure pour obtenir l'objet Calendar
+        Calendar calendar = Calendar.getInstance();
+        String[] dateParts = date.split("/");
+        String[] timeParts = time.split(":");
+        int day = Integer.parseInt(dateParts[0]);
+        int month = Integer.parseInt(dateParts[1]) - 1; // Mois commence à 0
+        int year = Integer.parseInt(dateParts[2]);
+        int hour = Integer.parseInt(timeParts[0]);
+        int minute = Integer.parseInt(timeParts[1]);
+        calendar.set(year, month, day, hour, minute);
+
+        // Retourner le temps en millisecondes
+        return calendar.getTimeInMillis();
     }
 }
