@@ -51,8 +51,9 @@ public class EventListModel extends Observable {
 
                 }
                 adapter.notifyDataSetChanged();
-            }
+                Log.d("moi", String.valueOf(listEvent.size()));
 
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
