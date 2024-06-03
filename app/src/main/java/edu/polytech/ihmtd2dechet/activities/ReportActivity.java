@@ -64,7 +64,7 @@ public class ReportActivity extends AppCompatActivity {
         // Select waste type
         wasteType.setOnClickListener(click ->
         {
-            final String[] items = {"Encombrant", "Non Encombrant", "Déchet toxique"};
+            final String[] items = {"Encombrant", "Non Encombrant", "Déchet toxique", "Poubelle"};
             AlertDialog.Builder builder = new AlertDialog.Builder(ReportActivity.this);
             builder.setTitle("Sélectionner type de déchet");
             builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -82,7 +82,10 @@ public class ReportActivity extends AppCompatActivity {
                     if(selectedItem.equals("Déchet toxique")) {
                         String waste = "Déchet toxique";
                         wasteType.setText(waste);
-
+                    }
+                    if(selectedItem.equals("Poubelle")) {
+                        String waste = "Poubelle";
+                        wasteType.setText(waste);
                     }
 
                 }
@@ -98,10 +101,11 @@ public class ReportActivity extends AppCompatActivity {
             String value_type = wasteType.getText()+"";
             if(value_description.length() != 0 && value_position.length() != 0 && value_type.length() != 0 && imageBitmap != null)
             {
-                //ContextWrapper contextWrapper = new ContextWrapper(getContext());
                 directory = getDir("imageDir", ContextWrapper.MODE_PRIVATE).getPath();
-                saveToInternalStorage(imageBitmap);
-                ReportsList.getInstance().add(new Report("null", value_description, null, new GeoPoint(43.7, 7.005), R.drawable.dechet));
+                SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+                String fileName = formater.format(new Date());
+                saveToInternalStorage(imageBitmap, fileName);
+                ReportsList.getInstance().add(new Report(value_description, value_type, new GeoPoint(43.7, 7.005), directory + "/" + fileName));
                 Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                 startActivity(intent);
             }
@@ -128,26 +132,20 @@ public class ReportActivity extends AppCompatActivity {
         }
     }
 
-    public void saveToInternalStorage(Bitmap picture) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions( this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, StorageInterface.REQUEST_MEDIA_READ);
-        } else { //permission is still granted
-            SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
-            String name = formater.format(new Date());
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
-            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/*");
-            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
-            contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-            getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-            File file = new File(Environment.DIRECTORY_PICTURES, name);
-            FileOutputStream fos = null;
-            try {
-                fos = new FileOutputStream(file);
-                picture.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+    public void saveToInternalStorage(Bitmap picture, String fileName) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
+        contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/*");
+        contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
+        contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+        getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+        File file = new File(directory, fileName);
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+            picture.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
