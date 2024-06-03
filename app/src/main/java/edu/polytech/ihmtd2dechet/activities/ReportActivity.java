@@ -22,6 +22,9 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+
 import org.osmdroid.util.GeoPoint;
 
 import java.io.File;
@@ -32,19 +35,20 @@ import java.util.Date;
 
 import edu.polytech.ihmtd2dechet.R;
 import edu.polytech.ihmtd2dechet.applications.NotificationApplication;
+import edu.polytech.ihmtd2dechet.interfaces.LocalistaionInterface;
 import edu.polytech.ihmtd2dechet.interfaces.PictureInterface;
 import edu.polytech.ihmtd2dechet.fragments.PictureFragment;
-import edu.polytech.ihmtd2dechet.interfaces.StorageInterface;
 import edu.polytech.ihmtd2dechet.objects.Notification;
 import edu.polytech.ihmtd2dechet.objects.Report;
 import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
 public class ReportActivity extends AppCompatActivity {
 
-    private Bitmap picture;
     private PictureFragment pictureFragment;
     Bitmap imageBitmap = null;
     private String directory;
+    private GeoPoint wastePosition = null;
+    private String wasteType = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,8 @@ public class ReportActivity extends AppCompatActivity {
 
         Button backButton = findViewById(R.id.bouton_retour);
         Button reportButton = findViewById(R.id.bouton_signaler);
-        TextView wasteType = findViewById(R.id.report_waste_type);
+        TextView wasteTypeButton = findViewById(R.id.report_waste_type);
+        TextView wastePositionButton = findViewById(R.id.report_waste_position);
 
         // Fragment creation
         pictureFragment = (PictureFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_picture);
@@ -64,65 +69,22 @@ public class ReportActivity extends AppCompatActivity {
             transaction.commit();
         }
 
-        // Select waste type
-        wasteType.setOnClickListener(click ->
-        {
-            final String[] items = {"Encombrant", "Non Encombrant", "Déchet toxique", "Poubelle"};
-            AlertDialog.Builder builder = new AlertDialog.Builder(ReportActivity.this);
-            builder.setTitle("Sélectionner type de déchet");
-            builder.setItems(items, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String selectedItem = items[which];
-                    if(selectedItem.equals("Encombrant")) {
-                        String waste = "Encombrant";
-                        wasteType.setText(waste);
-                    }
-                    if(selectedItem.equals("Non Encombrant")) {
-                        String waste = "Non Encombrant";
-                        wasteType.setText(waste);
-                    }
-                    if(selectedItem.equals("Déchet toxique")) {
-                        String waste = "Déchet toxique";
-                        wasteType.setText(waste);
-                    }
-                    if(selectedItem.equals("Poubelle")) {
-                        String waste = "Poubelle";
-                        wasteType.setText(waste);
-                    }
+        // Select waste position
+        wastePositionButton.setOnClickListener(click -> {
+            getLastKnownLocation();
+        });
 
-                }
-            });
-            builder.show();
+        // Select waste type
+        wasteTypeButton.setOnClickListener(click ->
+        {
+            wasteTypeSelection(wasteTypeButton);
         });
 
         // Report button
         reportButton.setOnClickListener(click ->
         {
-            String value_description = ((EditText)findViewById(R.id.report_description)).getText()+"";
-            String value_position = ((EditText)findViewById(R.id.report_waste_position)).getText()+"";
-            String value_type = wasteType.getText()+"";
-            if(value_description.length() != 0 && value_position.length() != 0 && value_type.length() != 0 && imageBitmap != null)
-            {
-                directory = getDir("imageDir", ContextWrapper.MODE_PRIVATE).getPath();
-                SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
-                String fileName = formater.format(new Date());
-                saveToInternalStorage(imageBitmap, fileName);
-                ReportsList.getInstance().add(new Report(value_description, value_type, new GeoPoint(43.7, 7.005), directory + "/" + fileName));
-
-                if (value_type.compareTo("Déchet toxique") == 0) {
-                    NotificationApplication.sendNotification(getApplicationContext(), this, new Notification(NotificationApplication.REPORTING_CHANNEL, NotificationCompat.PRIORITY_MAX, R.drawable.logo_dechets, "Nouveau déchet toxique signalé", value_description + "\n\n" + value_type + ", " +  value_position + "."));
-                }
-                if (value_type.compareTo("Encombrant") == 0) {
-                    NotificationApplication.sendNotification(getApplicationContext(), this, new Notification(NotificationApplication.REPORTING_CHANNEL, NotificationCompat.PRIORITY_HIGH, R.drawable.logo_dechets, "Nouveau déchet encombrant signalé", value_description + "\n\n" + value_type + ", " + value_position + "."));
-                }
-                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-                startActivity(intent);
-            }
-            else
-            {
-                Toast.makeText(getApplicationContext(), "Remplir tous les champs SVP", Toast.LENGTH_SHORT).show();
-            }
+            wasteType = wasteTypeButton.getText() + "";
+            reportWaste(wasteType);
         });
 
         // Back button
@@ -133,6 +95,7 @@ public class ReportActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -141,6 +104,82 @@ public class ReportActivity extends AppCompatActivity {
             pictureFragment.setImage(imageBitmap);
         }
     }
+
+
+    private void getLastKnownLocation() {
+        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LocalistaionInterface.REQUEST_LOCATION);
+        } else {
+            fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
+                if (location != null) {
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    GeoPoint geoPoint = new GeoPoint(latitude, longitude);
+                    wastePosition = geoPoint;
+                    ((TextView)findViewById(R.id.report_waste_position)).setText(geoPoint.toString());
+                }
+            });
+        }
+    }
+
+
+    private void wasteTypeSelection(TextView wasteTypeButton) {
+        final String[] items = {"Encombrant", "Non Encombrant", "Déchet toxique", "Poubelle"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(ReportActivity.this);
+        builder.setTitle("Sélectionner type de déchet");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String selectedItem = items[which];
+                if(selectedItem.equals("Encombrant")) {
+                    String waste = "Encombrant";
+                    wasteTypeButton.setText(waste);
+                }
+                if(selectedItem.equals("Non Encombrant")) {
+                    String waste = "Non Encombrant";
+                    wasteTypeButton.setText(waste);
+                }
+                if(selectedItem.equals("Déchet toxique")) {
+                    String waste = "Déchet toxique";
+                    wasteTypeButton.setText(waste);
+                }
+                if(selectedItem.equals("Poubelle")) {
+                    String waste = "Poubelle";
+                    wasteTypeButton.setText(waste);
+                }
+
+            }
+        });
+        builder.show();
+    }
+
+
+    public void reportWaste(String wasteType) {
+        String value_description = ((EditText)findViewById(R.id.report_description)).getText()+"";
+        if(value_description.length() != 0 && wastePosition != null && wasteType.length() != 0 && imageBitmap != null)
+        {
+            directory = getDir("imageDir", ContextWrapper.MODE_PRIVATE).getPath();
+            SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+            String fileName = formater.format(new Date());
+            saveToInternalStorage(imageBitmap, fileName);
+            ReportsList.getInstance().add(new Report(value_description, wasteType, wastePosition, directory + "/" + fileName));
+
+            if (wasteType.compareTo("Déchet toxique") == 0) {
+                NotificationApplication.sendNotification(getApplicationContext(), this, new Notification(NotificationApplication.REPORTING_CHANNEL, NotificationCompat.PRIORITY_MAX, R.drawable.logo_dechets, "Nouveau déchet toxique signalé", value_description + "\n\n" + wasteType + ", " +  wastePosition + "."));
+            }
+            if (wasteType.compareTo("Encombrant") == 0) {
+                NotificationApplication.sendNotification(getApplicationContext(), this, new Notification(NotificationApplication.REPORTING_CHANNEL, NotificationCompat.PRIORITY_HIGH, R.drawable.logo_dechets, "Nouveau déchet encombrant signalé", value_description + "\n\n" + wasteType + ", " + wastePosition + "."));
+            }
+            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Remplir tous les champs SVP", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     public void saveToInternalStorage(Bitmap picture, String fileName) {
         ContentValues contentValues = new ContentValues();
@@ -158,9 +197,5 @@ public class ReportActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 }

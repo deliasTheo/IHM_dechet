@@ -51,16 +51,16 @@
         app:layout_constraintTop_toBottomOf="@+id/titre_report"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/report_waste_position"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginTop="35dp"
         android:background="#CAC8C8"
         android:textColor="@color/black"
+        android:textSize="18dp"
         android:paddingLeft="15dp"
-        android:hint="emplacement du déchet"
-        android:inputType="textPostalAddress"
+        android:hint="détecter l'emplacement"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/report_description"
