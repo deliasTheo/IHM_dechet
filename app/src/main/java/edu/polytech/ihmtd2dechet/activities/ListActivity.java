@@ -26,20 +26,13 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
          if (isLandcape()){
             Intent intent = new Intent(this, LandscapeActivity.class);
             startActivity(intent);
             finish();
-
-
-
         }else {
              setContentView(R.layout.activity_list);
-             findViewById(R.id.notification).setOnClickListener(click -> {
-                 String title = "Titre de la notification";
-                 String message = "Message de la notification";
-                 sendNotificationOnChannel(this, this, title, message, REPORTING_CHANNEL, NotificationCompat.PRIORITY_DEFAULT);
-             });
 
              ReportAdapter adapter = new ReportAdapter(getApplicationContext(), ReportsList.getInstance().get(), getLayoutInflater());
 
@@ -51,9 +44,8 @@ public class ListActivity extends AppCompatActivity {
                  showStatusDialog(report, adapter);
              });
          }
-
-
     }
+
 
     private void showStatusDialog(Report report, ReportAdapter adapter) {
         String[] statuses = {"A faire", "En cours", "Finis"};
@@ -79,6 +71,7 @@ public class ListActivity extends AppCompatActivity {
         dialog.show();
     }
 
+
     private boolean isLandcape(){
         Display display = getWindowManager().getDefaultDisplay();
         int width = display.getWidth();
@@ -89,8 +82,5 @@ public class ListActivity extends AppCompatActivity {
             return true ;
         }
     }
-
-
-
 
 }

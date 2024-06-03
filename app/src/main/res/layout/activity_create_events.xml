@@ -64,11 +64,39 @@
         android:layout_marginTop="35dp"
         android:background="#CAC8C8"
         android:paddingLeft="15dp"
-        android:hint="Date : JJ/MM/AAAA HH:mm"
+        android:hint="Date : JJ/MM/AAAA"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_description" />
+
+    <EditText
+        android:id="@+id/input_start_time"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="30dp"
+        android:background="#CAC8C8"
+        android:hint="Debut : HH:mm"
+        android:inputType="date"
+
+        android:paddingLeft="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_date" />
+
+    <EditText
+        android:id="@+id/input_end_time"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="30dp"
+        android:background="#CAC8C8"
+        android:hint="Fin : HH:mm"
+        android:inputType="date"
+
+        android:paddingLeft="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_date" />
 
     <EditText
         android:id="@+id/input_location"
@@ -81,14 +109,14 @@
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_date" />
+        app:layout_constraintTop_toBottomOf="@id/input_start_time" />
 
     <Button
         android:id="@+id/bouton_valider"
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="#4CAF50"
 
         android:text="Valider"
@@ -96,7 +124,7 @@
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_location"
         app:layout_constraintEnd_toEndOf="parent"
 >
     </Button>
@@ -106,8 +134,9 @@
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginBottom="80dp"
         android:backgroundTint="#4CAF50"
+        android:layout_marginTop="30dp"
+
 
         android:text="Retour"
 
@@ -116,7 +145,7 @@
         android:textStyle="bold"
 
 
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_location"
         app:layout_constraintStart_toStartOf="parent">
     </Button>
 

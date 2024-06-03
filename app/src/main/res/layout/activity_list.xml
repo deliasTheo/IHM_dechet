@@ -22,6 +22,7 @@
         app:layout_constraintBottom_toTopOf = "@id/fragment_menu"
     />
 
+
     <Button
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
@@ -29,7 +30,8 @@
         app:layout_constraintTop_toTopOf = "@id/fragment_switch"
         app:layout_constraintStart_toEndOf = "@id/fragment_switch"
         app:layout_constraintEnd_toEndOf = "parent"
-        />
+    />
+
 
     <Button
         android:layout_width = "wrap_content"
@@ -38,18 +40,8 @@
         app:layout_constraintTop_toTopOf = "@id/fragment_switch"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintEnd_toStartOf = "@id/fragment_switch"
-        />
-
-
-    <TextView
-        android:id = "@+id/notification"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:text = "Notification"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintBottom_toTopOf = "@id/fragment_menu"
     />
+
 
     <fragment
         android:id = "@+id/fragment_report"
@@ -60,6 +52,7 @@
         app:layout_constraintEnd_toEndOf = "parent"
         android:layout_marginBottom = "5dp"
     />
+
 
     <fragment
         android:id = "@+id/fragment_switch"
@@ -79,6 +72,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

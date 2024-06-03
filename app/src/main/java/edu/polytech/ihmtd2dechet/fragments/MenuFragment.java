@@ -13,6 +13,7 @@ import edu.polytech.ihmtd2dechet.activities.EventsActivity;
 import edu.polytech.ihmtd2dechet.activities.GuideActivity;
 import edu.polytech.ihmtd2dechet.activities.MapActivity;
 import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.activities.NotificationActivity;
 import edu.polytech.ihmtd2dechet.activities.StatisticActivity;
 
 public class MenuFragment extends Fragment {
@@ -27,12 +28,14 @@ public class MenuFragment extends Fragment {
         ImageView logoChart = rootView.findViewById(R.id.chartIcon);
         logoChart.setOnClickListener(view -> navigateToActivity(StatisticActivity.class));
 
-
         ImageView logoGuide = rootView.findViewById(R.id.guideIcon);
         logoGuide.setOnClickListener(view -> navigateToActivity(GuideActivity.class));
 
         ImageView logoEvents = rootView.findViewById(R.id.EventsIcon);
         logoEvents.setOnClickListener(view -> navigateToActivity(EventsActivity.class));
+
+        ImageView logoNotification = rootView.findViewById(R.id.notificationIcon);
+        logoNotification.setOnClickListener(view -> navigateToActivity(NotificationActivity.class));
 
         return rootView;
     }

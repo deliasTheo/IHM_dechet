@@ -68,6 +68,10 @@
         <activity
             android:name=".activities.ReportActivity"
             android:exported="true" />
+        <activity
+            android:name=".activities.NotificationActivity"
+            android:exported="true"
+        />
     </application>
 
 </manifest>

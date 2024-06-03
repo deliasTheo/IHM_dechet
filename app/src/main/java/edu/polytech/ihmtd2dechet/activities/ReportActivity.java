@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -30,9 +31,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.polytech.ihmtd2dechet.R;
+import edu.polytech.ihmtd2dechet.applications.NotificationApplication;
 import edu.polytech.ihmtd2dechet.interfaces.PictureInterface;
 import edu.polytech.ihmtd2dechet.fragments.PictureFragment;
 import edu.polytech.ihmtd2dechet.interfaces.StorageInterface;
+import edu.polytech.ihmtd2dechet.objects.Notification;
 import edu.polytech.ihmtd2dechet.objects.Report;
 import edu.polytech.ihmtd2dechet.objects.ReportsList;
 
@@ -106,6 +109,13 @@ public class ReportActivity extends AppCompatActivity {
                 String fileName = formater.format(new Date());
                 saveToInternalStorage(imageBitmap, fileName);
                 ReportsList.getInstance().add(new Report(value_description, value_type, new GeoPoint(43.7, 7.005), directory + "/" + fileName));
+
+                if (value_type.compareTo("Déchet toxique") == 0) {
+                    NotificationApplication.sendNotification(getApplicationContext(), this, new Notification(NotificationApplication.REPORTING_CHANNEL, NotificationCompat.PRIORITY_MAX, R.drawable.logo_dechets, "Nouveau déchet toxique signalé", value_description + "\n\n" + value_type + ", " +  value_position + "."));
+                }
+                if (value_type.compareTo("Encombrant") == 0) {
+                    NotificationApplication.sendNotification(getApplicationContext(), this, new Notification(NotificationApplication.REPORTING_CHANNEL, NotificationCompat.PRIORITY_HIGH, R.drawable.logo_dechets, "Nouveau déchet encombrant signalé", value_description + "\n\n" + value_type + ", " + value_position + "."));
+                }
                 Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                 startActivity(intent);
             }
